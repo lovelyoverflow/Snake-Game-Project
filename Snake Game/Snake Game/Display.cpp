@@ -76,3 +76,18 @@ void Display::Print_Prompt(std::string str)
 {
 	std::cout << str;
 }
+
+void Display::Print_Score(Snake snake)
+{
+	Util util;
+	Point curPos = util.CursorUtil_Get();
+
+	util.CursorUtil_Set(80, 5);
+	std::cout << "    ";
+	util.CursorUtil_Set(80, 6);
+	std::cout << "┏━━━━━━━━━";
+	util.CursorUtil_Set(80, 7);
+	std::cout << "┃ 현재 점수: " << snake.GetBody()->size() - 2;
+	util.CursorUtil_Set(80, 8);
+	std::cout << "┗━━━━━━━━━" << std::endl;
+}

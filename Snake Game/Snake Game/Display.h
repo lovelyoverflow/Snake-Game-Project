@@ -17,6 +17,7 @@ public:
 	void Print_Snake(Snake snake);
 	void GetBoard(int(*boa)[GBOARD_WIDTH + 2]);
 	void Print_Prompt(std::string str);
+	void Print_Score(Snake snake);
 };
 
 #endif

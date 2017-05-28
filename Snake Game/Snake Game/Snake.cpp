@@ -127,14 +127,8 @@ void Snake::Move_UP()
 	}
 
 	Point HeadPos = { head().x, head().y - 1 };
-	Util util;
 
 	body.push_front(HeadPos);
-
-	util.CursorUtil_Set(tail().x, tail().y);
-	std::cout << "  ";
-
-	body.remove(body.back());
 }
 
 void Snake::Move_Down()
@@ -145,14 +139,7 @@ void Snake::Move_Down()
 	}
 
 	Point HeadPos = { head().x, head().y + 1 };
-	Util util;
-
 	body.push_front(HeadPos);
-
-	util.CursorUtil_Set(tail().x, tail().y);
-	std::cout << "  ";
-
-	body.remove(body.back());
 }
 
 void Snake::Move_Left()
@@ -163,14 +150,7 @@ void Snake::Move_Left()
 	}
 
 	Point HeadPos = { head().x - 2, head().y };
-	Util util;
-
 	body.push_front(HeadPos);
-
-	util.CursorUtil_Set(tail().x, tail().y);
-	std::cout << "  ";
-
-	body.remove(body.back());
 }
 
 void Snake::Move_Right()
@@ -181,14 +161,7 @@ void Snake::Move_Right()
 	}
 
 	Point HeadPos = { head().x + 2, head().y };
-	Util util;
-	Point curPos = util.CursorUtil_Get();
 	body.push_front(HeadPos);
-
-	util.CursorUtil_Set(tail().x, tail().y);
-	std::cout << "  ";	util.CursorUtil_Set(curPos.x, curPos.y);
-
-	body.remove(body.back());
 }
 
 int Snake::GetDirection()
@@ -219,4 +192,16 @@ void Snake::SetStarPos()
 Point Snake::GetStarPos()
 {
 	return starPos;
+}
+
+Point Snake::EraseTail()
+{
+	Util util;
+	Point tailPos = tail();
+
+	util.CursorUtil_Set(tailPos.x, tailPos.y);
+	std::cout << "  ";
+
+	body.remove(body.back());
+	return tailPos;
 }

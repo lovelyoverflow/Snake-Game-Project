@@ -19,6 +19,7 @@ void SnakeManager::Init()
 	display.Print_Snake(snake);
 	snake.SetStarPos();
 	display.Print_Food(snake.GetStarPos());
+	display.Print_Score(snake);
 }
 
 void SnakeManager::Game()
@@ -33,15 +34,21 @@ void SnakeManager::Game()
 			
 			if (key == 224)
 				key = _getch();
+			else
+				continue;
 
 			snake.Set_Direction(key);
 		}
 
+		Point before = snake.EraseTail();
 		snake.Move();
 		display.Print_Snake(snake);
 
 		if (snake.head() == snake.GetStarPos())
-			GetStar();
+		{
+			GetStar(before);
+			display.Print_Score(snake);
+		}
 
 		Sleep(100);
 	}
@@ -59,25 +66,9 @@ void SnakeManager::Print_Tail(Point nextTail)
 	util.CursorUtil_Set(curPos.x, curPos.y);
 }
 
-void SnakeManager::GetStar()
+void SnakeManager::GetStar(Point before)
 {
-	Point tailPos = snake.tail();
-
-	switch (snake.GetDirection())
-	{
-	case KeyCode::LEFT_KEY_CODE:
-		Print_Tail(Point(tailPos.x + 2, tailPos.y));
-		break;
-	case KeyCode::RIGHT_KEY_CODE:
-		Print_Tail(Point(tailPos.x - 2, tailPos.y));
-		break;
-	case KeyCode::UP_KEY_CODE:
-		Print_Tail(Point(tailPos.x, tailPos.y + 1));
-		break;
-	case KeyCode::DOWN_KEY_CODE:
-		Print_Tail(Point(tailPos.x, tailPos.y - 1));
-		break;
-	}
+	Print_Tail(before);
 
 	snake.SetStarPos();
 	display.Print_Food(snake.GetStarPos());

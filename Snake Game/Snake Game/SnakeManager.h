@@ -18,7 +18,7 @@ public:
 	SnakeManager();
 	void Init();
 	void Game();
-	void GetStar();
+	void GetStar(Point before);
 };
 
 #endif

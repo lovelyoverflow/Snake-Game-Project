@@ -30,6 +30,7 @@ public:
 	void SetStarPos();
 	Point GetStarPos();
 	std::list<Point>* GetBody();
+	Point EraseTail();
 
 	Point head();
 	Point tail();
