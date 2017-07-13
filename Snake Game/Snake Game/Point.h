@@ -7,7 +7,8 @@ public:
 	int x;
 	int y;
 public:
-	Point(int X = 0, int Y = 0);
+	Point(int X, int Y);
+	Point();
 
 	bool operator==(Point pos);
 	void operator=(Point& pos);

@@ -4,6 +4,7 @@
 #include "Util.h"
 #include <cstdlib>
 #include <ctime>
+#include <conio.h>
 
 Snake::Snake()
 {
@@ -12,7 +13,8 @@ Snake::Snake()
 void Snake::Init()
 {
 	body.clear();
-
+	level = 1;
+	score = 0;
 	Point pos[2] = {
 		{ START_SNAKE_POS_X, START_SNAKE_POS_Y },
 		{ START_SNAKE_POS_X, START_SNAKE_POS_Y + 1 }
@@ -54,6 +56,9 @@ void Snake::Move()
 	case KeyCode::DOWN_KEY_CODE:
 		Move_Down();
 		break;
+	case PAUSE_KEY_CODE:
+		Display().Print_Pause();
+		break;
 	}
 }
 
@@ -84,19 +89,19 @@ bool Snake::Is_Collistion()
 	switch (direction)
 	{
 	case KeyCode::LEFT_KEY_CODE:
-		if (board[headPos.y][(headPos.x - 2) / 2] == 1)
+		if (board[headPos.y - START_MAP_Y][(headPos.x - START_MAP_X - 2) / 2] == 1)
 			return true;
 		break;
 	case KeyCode::RIGHT_KEY_CODE:
-		if (board[headPos.y][(headPos.x + 2) / 2] == 1)
+		if (board[headPos.y - START_MAP_Y][(headPos.x - START_MAP_X + 2) / 2] == 1)
 			return true;
 		break;
 	case KeyCode::UP_KEY_CODE:
-		if (board[headPos.y - 1][headPos.x / 2] == 1)
+		if (board[headPos.y - 1 - START_MAP_Y][(headPos.x - START_MAP_X) / 2] == 1)
 			return true;
 		break;
 	case KeyCode::DOWN_KEY_CODE:
-		if (board[headPos.y + 1][headPos.x / 2] == 1)
+		if (board[headPos.y + 1 - START_MAP_Y][(headPos.x - START_MAP_X) / 2] == 1)
 			return true;
 		break;
 	}
@@ -107,6 +112,16 @@ bool Snake::Is_Collistion()
 std::list<Point>* Snake::GetBody()
 {
 	return &body;
+}
+
+int& Snake::GetLevel()
+{
+	return level;
+}
+
+int& Snake::GetScore()
+{
+	return score;
 }
 
 Point Snake::head()
@@ -121,45 +136,24 @@ Point Snake::tail()
 
 void Snake::Move_UP()
 {
-	if (Is_Collistion() == true || Is_Bitten() == true) {
-		Display().Print_Prompt("Game Over~");
-		exit(-1);
-	}
-
 	Point HeadPos = { head().x, head().y - 1 };
-
 	body.push_front(HeadPos);
 }
 
 void Snake::Move_Down()
 {
-	if (Is_Collistion() == true || Is_Bitten() == true) {
-		Display().Print_Prompt("Game Over~");
-		exit(-1);
-	}
-
 	Point HeadPos = { head().x, head().y + 1 };
 	body.push_front(HeadPos);
 }
 
 void Snake::Move_Left()
 {
-	if (Is_Collistion() == true || Is_Bitten() == true) {
-		Display().Print_Prompt("Game Over~");
-		exit(-1);
-	}
-
 	Point HeadPos = { head().x - 2, head().y };
 	body.push_front(HeadPos);
 }
 
 void Snake::Move_Right()
 {
-	if (Is_Collistion() == true || Is_Bitten() == true) {
-		Display().Print_Prompt("Game Over~");
-		exit(-1);
-	}
-
 	Point HeadPos = { head().x + 2, head().y };
 	body.push_front(HeadPos);
 }
@@ -173,16 +167,16 @@ void Snake::SetStarPos()
 {
 	srand((unsigned int)time(NULL));
 
-	int x = (rand() % GBOARD_WIDTH + 1) * 2;
-	int y = rand() % GBOARD_HEIGHT + 1;
+	int x = (((rand() % GBOARD_WIDTH) + 1 + START_MAP_X / 2) * 2);
+	int y = rand() % GBOARD_HEIGHT + START_MAP_Y + 1;
 	starPos.x = x;
 	starPos.y = y;
 
 	for (auto i = body.begin(); i != body.end(); i++)
 	{
 		if (starPos == *i) {
-			int x = (rand() % GBOARD_WIDTH + 1) * 2;
-			int y = rand() % GBOARD_HEIGHT + 1;
+			int x = (((rand() % GBOARD_WIDTH) + 1 + START_MAP_X / 2) * 2);
+			int y = rand() % GBOARD_HEIGHT + START_MAP_Y + 1;
 			starPos.x = x;
 			starPos.y = y;
 		}
@@ -192,6 +186,19 @@ void Snake::SetStarPos()
 Point Snake::GetStarPos()
 {
 	return starPos;
+}
+
+void Snake::SaveScore()
+{
+	FILE * fp = fopen("C:\\Users\\score.txt", "wt");
+	Util util;
+	char name[100];
+
+	util.CursorUtil_Set(TITLE_POS_X + 30, TITLE_POS_Y + 17);
+	std::cin >> name;
+	fprintf(fp, "%s %d \n", name, score);
+
+	exit(0);
 }
 
 Point Snake::EraseTail()

@@ -24,3 +24,8 @@ Point Util::CursorUtil_Get(void)
 	Point point(curInfo.dwCursorPosition.X, curInfo.dwCursorPosition.Y);
 	return point;
 }
+
+void Util::SetColorText(int color)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
