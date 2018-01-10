@@ -195,7 +195,7 @@ void Snake::SaveScore()
 	char name[100];
 
 	util.CursorUtil_Set(TITLE_POS_X + 30, TITLE_POS_Y + 17);
-	std::cin >> name;
+	fgets(name, sizeof(name), stdin);
 	fprintf(fp, "%s %d \n", name, score);
 
 	exit(0);
