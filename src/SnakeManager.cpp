@@ -1,3 +1,4 @@
+#include <ncurses.h>
 #include "Common.h"
 #include "Display.h"
 #include "Snake.h"
@@ -19,7 +20,7 @@ void SnakeManager::Init()
 	system("cls");
 
 	display.Print_Title();
-	_getch();
+	getch();
 	system("cls");
 
 	display.Print_Wall();
@@ -39,10 +40,10 @@ void SnakeManager::Game()
 	{
 		if (_kbhit())
 		{
-			key = _getch();
+			key = getch();
 
 			if (key == 224)
-				key = _getch();
+				key = getch();
 			else if (key == PAUSE_KEY_CODE)
 			{
 				while (!_kbhit())
@@ -71,12 +72,12 @@ void SnakeManager::Game()
 
 			display.Print_GameOver();
 
-			key = _getch();
+			key = getch();
 
 			while (key != RESUME && key != EXIT)
 			{
 				display.Print_GameOver();
-				key = _getch();
+				key = getch();
 			}
 
 			switch (key)

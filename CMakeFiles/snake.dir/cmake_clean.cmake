@@ -1,14 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/snake.dir/Display.cpp.o"
-  "CMakeFiles/snake.dir/Display.cpp.o.d"
-  "CMakeFiles/snake.dir/Point.cpp.o"
-  "CMakeFiles/snake.dir/Point.cpp.o.d"
-  "CMakeFiles/snake.dir/Snake.cpp.o"
-  "CMakeFiles/snake.dir/Snake.cpp.o.d"
-  "CMakeFiles/snake.dir/SnakeManager.cpp.o"
-  "CMakeFiles/snake.dir/SnakeManager.cpp.o.d"
-  "CMakeFiles/snake.dir/main.cpp.o"
-  "CMakeFiles/snake.dir/main.cpp.o.d"
+  "CMakeFiles/snake.dir/src/main.cpp.o"
+  "CMakeFiles/snake.dir/src/main.cpp.o.d"
   "snake"
   "snake.pdb"
 )

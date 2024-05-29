@@ -129,125 +129,29 @@ snake/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/build
 .PHONY : snake/fast
 
-Display.o: Display.cpp.o
-.PHONY : Display.o
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
 
 # target to build an object file
-Display.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/Display.cpp.o
-.PHONY : Display.cpp.o
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-Display.i: Display.cpp.i
-.PHONY : Display.i
-
-# target to preprocess a source file
-Display.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/Display.cpp.i
-.PHONY : Display.cpp.i
-
-Display.s: Display.cpp.s
-.PHONY : Display.s
-
-# target to generate assembly for a file
-Display.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/Display.cpp.s
-.PHONY : Display.cpp.s
-
-Point.o: Point.cpp.o
-.PHONY : Point.o
-
-# target to build an object file
-Point.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/Point.cpp.o
-.PHONY : Point.cpp.o
-
-Point.i: Point.cpp.i
-.PHONY : Point.i
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-Point.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/Point.cpp.i
-.PHONY : Point.cpp.i
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-Point.s: Point.cpp.s
-.PHONY : Point.s
-
-# target to generate assembly for a file
-Point.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/Point.cpp.s
-.PHONY : Point.cpp.s
-
-Snake.o: Snake.cpp.o
-.PHONY : Snake.o
-
-# target to build an object file
-Snake.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/Snake.cpp.o
-.PHONY : Snake.cpp.o
-
-Snake.i: Snake.cpp.i
-.PHONY : Snake.i
-
-# target to preprocess a source file
-Snake.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/Snake.cpp.i
-.PHONY : Snake.cpp.i
-
-Snake.s: Snake.cpp.s
-.PHONY : Snake.s
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-Snake.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/Snake.cpp.s
-.PHONY : Snake.cpp.s
-
-SnakeManager.o: SnakeManager.cpp.o
-.PHONY : SnakeManager.o
-
-# target to build an object file
-SnakeManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/SnakeManager.cpp.o
-.PHONY : SnakeManager.cpp.o
-
-SnakeManager.i: SnakeManager.cpp.i
-.PHONY : SnakeManager.i
-
-# target to preprocess a source file
-SnakeManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/SnakeManager.cpp.i
-.PHONY : SnakeManager.cpp.i
-
-SnakeManager.s: SnakeManager.cpp.s
-.PHONY : SnakeManager.s
-
-# target to generate assembly for a file
-SnakeManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/SnakeManager.cpp.s
-.PHONY : SnakeManager.cpp.s
-
-main.o: main.cpp.o
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake.dir/build.make CMakeFiles/snake.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -258,21 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... snake"
-	@echo "... Display.o"
-	@echo "... Display.i"
-	@echo "... Display.s"
-	@echo "... Point.o"
-	@echo "... Point.i"
-	@echo "... Point.s"
-	@echo "... Snake.o"
-	@echo "... Snake.i"
-	@echo "... Snake.s"
-	@echo "... SnakeManager.o"
-	@echo "... SnakeManager.i"
-	@echo "... SnakeManager.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

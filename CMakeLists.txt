@@ -1,1 +1,1 @@
-ADD_EXECUTABLE( snake main.cpp Snake.cpp SnakeManager.cpp Point.cpp Display.cpp )
+ADD_EXECUTABLE( snake src/main.cpp )
