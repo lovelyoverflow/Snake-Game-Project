@@ -9,6 +9,14 @@
       "cStandard": "${default}",
       "cppStandard": "${default}",
       "intelliSenseMode": "linux-gcc-x64",
+      "browse": {
+        "path": [
+          "${workspaceRoot}"
+          "${workspaceRoot}/include"
+        ],
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": ""
+      },
       "compilerArgs": [
         ""
       ]

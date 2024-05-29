@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/snake.dir/src/main.cpp.o -o snake 
+/usr/bin/c++ -rdynamic CMakeFiles/snake.dir/src/main.o CMakeFiles/snake.dir/src/point.o -o snake 

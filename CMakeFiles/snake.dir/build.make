@@ -69,31 +69,47 @@ include CMakeFiles/snake.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/snake.dir/flags.make
 
-CMakeFiles/snake.dir/src/main.cpp.o: CMakeFiles/snake.dir/flags.make
-CMakeFiles/snake.dir/src/main.cpp.o: src/main.cpp
-CMakeFiles/snake.dir/src/main.cpp.o: CMakeFiles/snake.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/snake.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/snake.dir/src/main.cpp.o -MF CMakeFiles/snake.dir/src/main.cpp.o.d -o CMakeFiles/snake.dir/src/main.cpp.o -c /home/hoonbuntu/develop/Snake-Game-Project/src/main.cpp
+CMakeFiles/snake.dir/src/main.o: CMakeFiles/snake.dir/flags.make
+CMakeFiles/snake.dir/src/main.o: src/main.cpp
+CMakeFiles/snake.dir/src/main.o: CMakeFiles/snake.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/snake.dir/src/main.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/snake.dir/src/main.o -MF CMakeFiles/snake.dir/src/main.o.d -o CMakeFiles/snake.dir/src/main.o -c /home/hoonbuntu/develop/Snake-Game-Project/src/main.cpp
 
-CMakeFiles/snake.dir/src/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/snake.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hoonbuntu/develop/Snake-Game-Project/src/main.cpp > CMakeFiles/snake.dir/src/main.cpp.i
+CMakeFiles/snake.dir/src/main.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/snake.dir/src/main.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hoonbuntu/develop/Snake-Game-Project/src/main.cpp > CMakeFiles/snake.dir/src/main.i
 
-CMakeFiles/snake.dir/src/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/snake.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hoonbuntu/develop/Snake-Game-Project/src/main.cpp -o CMakeFiles/snake.dir/src/main.cpp.s
+CMakeFiles/snake.dir/src/main.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/snake.dir/src/main.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hoonbuntu/develop/Snake-Game-Project/src/main.cpp -o CMakeFiles/snake.dir/src/main.s
+
+CMakeFiles/snake.dir/src/point.o: CMakeFiles/snake.dir/flags.make
+CMakeFiles/snake.dir/src/point.o: src/point.cpp
+CMakeFiles/snake.dir/src/point.o: CMakeFiles/snake.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/snake.dir/src/point.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/snake.dir/src/point.o -MF CMakeFiles/snake.dir/src/point.o.d -o CMakeFiles/snake.dir/src/point.o -c /home/hoonbuntu/develop/Snake-Game-Project/src/point.cpp
+
+CMakeFiles/snake.dir/src/point.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/snake.dir/src/point.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hoonbuntu/develop/Snake-Game-Project/src/point.cpp > CMakeFiles/snake.dir/src/point.i
+
+CMakeFiles/snake.dir/src/point.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/snake.dir/src/point.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hoonbuntu/develop/Snake-Game-Project/src/point.cpp -o CMakeFiles/snake.dir/src/point.s
 
 # Object files for target snake
 snake_OBJECTS = \
-"CMakeFiles/snake.dir/src/main.cpp.o"
+"CMakeFiles/snake.dir/src/main.o" \
+"CMakeFiles/snake.dir/src/point.o"
 
 # External object files for target snake
 snake_EXTERNAL_OBJECTS =
 
-snake: CMakeFiles/snake.dir/src/main.cpp.o
+snake: CMakeFiles/snake.dir/src/main.o
+snake: CMakeFiles/snake.dir/src/point.o
 snake: CMakeFiles/snake.dir/build.make
 snake: CMakeFiles/snake.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable snake"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable snake"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/snake.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

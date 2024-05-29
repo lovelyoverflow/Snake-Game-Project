@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/hoonbuntu/develop/Snake-Game-Project/src/main.cpp" "CMakeFiles/snake.dir/src/main.cpp.o" "gcc" "CMakeFiles/snake.dir/src/main.cpp.o.d"
+  "/home/hoonbuntu/develop/Snake-Game-Project/src/main.cpp" "CMakeFiles/snake.dir/src/main.o" "gcc" "CMakeFiles/snake.dir/src/main.o.d"
+  "/home/hoonbuntu/develop/Snake-Game-Project/src/point.cpp" "CMakeFiles/snake.dir/src/point.o" "gcc" "CMakeFiles/snake.dir/src/point.o.d"
   )
 
 # Targets to which this target links.

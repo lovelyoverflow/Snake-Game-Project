@@ -4,6 +4,8 @@
 
 int main(void)
 {
-	Pos
+	Point p1(10, 20);
+	std::cout << p1 << std::endl;
+
 	return 0;
 }
