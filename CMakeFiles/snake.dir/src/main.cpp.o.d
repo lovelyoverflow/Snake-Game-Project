@@ -145,4 +145,13 @@ CMakeFiles/snake.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc
+ /usr/include/c++/11/bits/istream.tcc /usr/include/curses.h \
+ /usr/include/ncurses_dll.h /usr/include/unctrl.h /usr/include/curses.h \
+ /home/hoonbuntu/develop/Snake-Game-Project/./include/point.hpp \
+ /home/hoonbuntu/develop/Snake-Game-Project/./include/display.hpp \
+ /home/hoonbuntu/develop/Snake-Game-Project/./include/snake.hpp \
+ /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
+ /usr/include/c++/11/ext/aligned_buffer.h \
+ /usr/include/c++/11/bits/list.tcc \
+ /home/hoonbuntu/develop/Snake-Game-Project/./include/point.hpp

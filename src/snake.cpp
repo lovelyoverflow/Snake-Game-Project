@@ -1,7 +1,9 @@
-#include "Constant.h"
-#include "Snake.h"
-#include "Display.h"
-#include "Util.h"
+#include <iostream>
+
+#include "constant.hpp"
+#include "snake.hpp"
+#include "display.hpp"
+#include "util.hpp"
 #include <cstdlib>
 #include <ctime>
 

@@ -4,7 +4,7 @@ Point::Point(int X, int Y)
 	:x(X), y(Y)
 {}
 
-bool Point::operator==(Point pos)
+bool Point::operator==(const Point& pos)
 {
 	if (x == pos.x && y == pos.y)
 		return true;
@@ -12,7 +12,7 @@ bool Point::operator==(Point pos)
 	return false;
 }
 
-void Point::operator=(Point& pos)
+void Point::operator=(const Point& pos)
 {
 	x = pos.x;
 	y = pos.y;

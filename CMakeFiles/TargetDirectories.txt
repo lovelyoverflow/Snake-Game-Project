@@ -1,3 +1,7 @@
 /home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles/snake.dir
 /home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles/edit_cache.dir
 /home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles/rebuild_cache.dir
+/home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles/list_install_components.dir
+/home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles/install.dir
+/home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles/install/local.dir
+/home/hoonbuntu/develop/Snake-Game-Project/CMakeFiles/install/strip.dir

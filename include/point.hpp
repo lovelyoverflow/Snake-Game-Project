@@ -11,8 +11,8 @@ public:
 public:
 	Point(int X = 0, int Y = 0);
 
-	bool operator==(Point pos);
-	void operator=(Point& pos);
+	bool operator==(const Point& pos);
+	void operator=(const Point& pos);
 
 	friend std::ostream& operator << (std::ostream& os, const Point& point)
 	{

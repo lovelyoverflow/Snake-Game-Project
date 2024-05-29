@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/hoonbuntu/develop/Snake-Game-Project/./include
+CXX_INCLUDES = -I/home/hoonbuntu/develop/Snake-Game-Project/./src -I/home/hoonbuntu/develop/Snake-Game-Project/./include
 
-CXX_FLAGS = 
+CXX_FLAGS =  -Wall -Wextra -pedantic -std=c11
 
