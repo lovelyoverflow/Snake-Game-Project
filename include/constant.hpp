@@ -15,4 +15,8 @@ enum Resume {
 	RESUME = 49, EXIT = 50
 };
 
+enum Color {
+	WALL = 1, IMMUNE_WALL, SNAKE, FOOD, SCORE
+};
+
 #endif
