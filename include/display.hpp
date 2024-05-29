@@ -18,9 +18,6 @@ class Display
 {
 private:
 	static int board[GBOARD_HEIGHT + 2][GBOARD_WIDTH + 2];
-	// WINDOW *map_panel;
-	// WINDOW *score_panel;
-	// WINDOW *mission_panel;
 public:
 	Display();
 	void Print_Title();										
