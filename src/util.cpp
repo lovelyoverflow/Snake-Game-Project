@@ -1,5 +1,5 @@
 #include "util.hpp"
-
+#include "constant.hpp"
 #include <ncurses.h>
 
 void Util::CursorUtil_Set(int x, int y)
@@ -19,6 +19,7 @@ Point Util::CursorUtil_Get(void)
 	return cur_pos;
 }
 
-void Util::SetColorText(int color)
+void Util::SetColorText(Color color)
 {
+ 	wattron(stdscr, COLOR_PAIR(color));
 }
