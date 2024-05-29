@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -Wextra -pedantic -std=c11 -rdynamic CMakeFiles/snake.dir/src/main.cpp.o CMakeFiles/snake.dir/src/display.cpp.o CMakeFiles/snake.dir/src/point.cpp.o -o snake  -lcurses 
