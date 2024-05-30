@@ -36,7 +36,7 @@ public:
 	void SaveScore();
 
 	Point GetStarPos();				
-	std::list<Point>* GetBody();	
+	std::list<Point>& GetBody();	
 	Point EraseTail();				
 
 	Point head();					
