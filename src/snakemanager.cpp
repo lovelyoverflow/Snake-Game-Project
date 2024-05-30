@@ -17,9 +17,9 @@ void SnakeManager::Init()
 	snake.Init();
 	util.CursorUtil_Hide();
 
-	system("title Snake");
-	system("mode con cols=150 lines=40");
-	system("cls");
+	// system("title Snake");
+	// system("mode con cols=150 lines=40");
+	// system("cls");
 
 	display.Print_Title();
 	getch();
@@ -39,9 +39,9 @@ void SnakeManager::Game()
 	int key;
 	int delay = 100000;
 
-
 	while (true)
 	{
+		// std::cout << " ASD " << std::endl;
 		if (util.kbhit())
 		{
 			// std::cout << key << std::endl;
@@ -67,7 +67,6 @@ void SnakeManager::Game()
 		}
 
 		Point before = snake.EraseTail();
-
 
 		if (snake.Is_Collistion() == true || snake.Is_Bitten() == true)
 		{
@@ -98,6 +97,7 @@ void SnakeManager::Game()
 
 		snake.Move();
 		display.Print_Snake(snake);
+		// std::cout << " ASD " << std::endl;
 
 		if (snake.head() == snake.GetStarPos())
 		{
@@ -114,6 +114,7 @@ void SnakeManager::Game()
 			display.Print_Score(snake);
 		}
 
+		refresh();
 		usleep(delay);
 	}
 }
