@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <unistd.h>
 
 #include "util.cpp"
 #include "display.hpp"
@@ -9,13 +10,51 @@
 #include "point.hpp"
 
 Display::Display()
-{}
+{
+	init_pair(WALL, COLOR_WHITE, COLOR_WHITE);
+	init_pair(FOOD, COLOR_WHITE, COLOR_BLUE);
+	init_pair(IMMUNE_WALL, COLOR_WHITE, COLOR_CYAN);
+	init_pair(TITLE, COLOR_YELLOW, COLOR_BLACK);
+}
 
 int Display::board[GBOARD_HEIGHT + 2][GBOARD_WIDTH + 2] = { 0, };
 
 void Display::Print_Title()
 {
+	Util util;
+	Point curPos = util.CursorUtil_Get();
 
+	util.SetColorText(TITLE);
+	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y - 5, "      ___           ___           ___           ___           ___                    ___           ___           ___           ___");
+	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y - 4, "     /  /\\         /__/\\         /  /\\         /__/|         /  /\\                  /  /\\         /  /\\         /__/\\         /  /\\");
+	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y - 3, "    /  /:/_        \\  \\:\\       /  /::\\       |  |:|        /  /:/_                /  /:/_       /  /::\\       |  |::\\       /  /:/_");
+	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y - 2, "   /  /:/ /\\        \\  \\:\\     /  /:/\\:\\      |  |:|       /  /:/ /\\              /  /:/ /\\     /  /:/\\:\\      |  |:|:\\     /  /:/ /\\");
+	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y - 1, "  /  /:/ /::\\   _____\\__\\:\\   /  /:/~/::\\   __|  |:|      /  /:/ /:/_            /  /:/_/::\\   /  /:/~/::\\   __|__|:|\\:\\   /  /:/ /:/_");
+	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y    , " /__/:/ /:/\\:\\ /__/::::::::\\ /__/:/ /:/\\:\\ /__/\\_|:|____ /__/:/ /:/ /\\          /__/:/__\\/\\:\\ /__/:/ /:/\\:\\ /__/::::| \\:\\ /__/:/ /:/ /\\");
+	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y + 1, " \\  \\:\\/:/~/:/ \\  \\:\\~~\\~~\\/ \\  \\:\\/:/__\\/ \\  \\:\\/:::::/ \\  \\:\\/:/ /:/          \\  \\:\\ /~~/:/ \\  \\:\\/:/__\\/ \\  \\:\\~~\\__\\/ \\  \\:\\/:/ /:/");
+	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y + 2, "  \\  \\::/ /:/   \\  \\:\\  ~~~   \\  \\::/       \\  \\::/~~~~   \\  \\::/ /:/            \\  \\:\\  /:/   \\  \\::/       \\  \\:\\        \\  \\::/ /:/");
+	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y + 3, "   \\__\\/ /:/     \\  \\:\\        \\  \\:\\        \\  \\:\\        \\  \\:\\/:/              \\  \\:\\/:/     \\  \\:\\        \\  \\:\\        \\  \\:\\/:/");
+	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y + 4, "     /__/:/       \\  \\:\\        \\  \\:\\        \\  \\:\\        \\  \\::/                \\  \\::/       \\  \\:\\        \\  \\:\\        \\  \\::/");
+	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y + 5, "     \\__\\/         \\__\\/         \\__\\/         \\__\\/         \\__\\/                  \\__\\/         \\__\\/         \\__\\/         \\__\\/");
+
+	// while (!util.kbhit())
+	{
+		util.SetColorText(TITLE);
+		util.CursorUtil_Print(START_MAP_X + 55, 25, "Press and key to START");
+		// usleep(400);
+		// mvprintw(START_MAP_X + 55, 25, "                      ");
+		// usleep(400);
+		// refresh();
+
+		util.CursorUtil_Print(START_MAP_X + 56, 28, "Press and P to PAUSE");
+		util.CursorUtil_Print(START_MAP_X + 54, 29, "Move: up down left right");
+
+		getch();
+		erase();
+		refresh();
+	}
+
+	util.CursorUtil_Set(curPos.x, curPos.y);
 }
 
 void Display::Print_GameOver()
