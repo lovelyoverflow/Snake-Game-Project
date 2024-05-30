@@ -19,7 +19,25 @@ Point Util::CursorUtil_Get(void)
 	return cur_pos;
 }
 
+void Util::CursorUtil_Print(int x, int y, const char* str)
+{
+	mvprintw(y, x, str);
+}
+
 void Util::SetColorText(Color color)
 {
  	wattron(stdscr, COLOR_PAIR(color));
+}
+
+bool Util::kbhit(void)
+{
+	int ch = getch();
+
+    if (ch != ERR) 
+	{
+        ungetch(ch);
+        return true;
+    } 
+	else 
+        return false;
 }
