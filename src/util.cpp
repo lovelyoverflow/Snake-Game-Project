@@ -1,5 +1,7 @@
 #include "util.hpp"
 #include "constant.hpp"
+#include <sys/ioctl.h>
+#include <termios.h>
 #include <ncurses.h>
 
 void Util::CursorUtil_Set(int x, int y)
@@ -31,13 +33,19 @@ void Util::SetColorText(Color color)
 
 bool Util::kbhit(void)
 {
-	int ch = getch();
+    static bool initflag = false;
+    static const int STDIN = 0;
 
-    if (ch != ERR) 
-	{
-        ungetch(ch);
-        return true;
-    } 
-	else 
-        return false;
+    if (!initflag) {
+        struct termios term;
+        tcgetattr(STDIN, &term);
+        term.c_lflag &= ~ICANON;
+        tcsetattr(STDIN, TCSANOW, &term);
+        setbuf(stdin, NULL);
+        initflag = true;
+    }
+
+    int nbbytes;
+    ioctl(STDIN, FIONREAD, &nbbytes);
+    return nbbytes;
 }
