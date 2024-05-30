@@ -6,8 +6,8 @@ enum Direction {
 };
 
 enum KeyCode {
-	UP_KEY_CODE = 72, LEFT_KEY_CODE = 75,
-	RIGHT_KEY_CODE = 77, DOWN_KEY_CODE = 80,
+	UP_KEY_CODE = 259, LEFT_KEY_CODE = 260,
+	RIGHT_KEY_CODE = 261, DOWN_KEY_CODE = 258,
 	SPACE_BAR_KEY_CODE = 32, PAUSE_KEY_CODE = 112
 };
 
@@ -16,7 +16,7 @@ enum Resume {
 };
 
 enum Color {
-	WALL = 1, IMMUNE_WALL, SNAKE, FOOD, SCORE, TITLE
+	WALL = 1, IMMUNE_WALL, SNAKE, FOOD, SCORE, TITLE, BLANK
 };
 
 #endif
