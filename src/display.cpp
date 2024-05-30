@@ -3,10 +3,10 @@
 #include <ctime>
 #include <unistd.h>
 
+#include "snake.hpp"
 #include "util.cpp"
 #include "display.hpp"
 #include "constant.hpp"
-#include "snake.hpp"
 #include "point.hpp"
 
 Display::Display()
@@ -15,6 +15,8 @@ Display::Display()
 	init_pair(FOOD, COLOR_WHITE, COLOR_BLUE);
 	init_pair(IMMUNE_WALL, COLOR_WHITE, COLOR_CYAN);
 	init_pair(TITLE, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(SNAKE, COLOR_BLACK, COLOR_GREEN);
+	init_pair(BLANK, COLOR_BLACK, COLOR_BLACK);
 }
 
 int Display::board[GBOARD_HEIGHT + 2][GBOARD_WIDTH + 2] = { 0, };
@@ -42,10 +44,6 @@ void Display::Print_Title()
 
 	util.CursorUtil_Print(START_MAP_X + 56, 28, "Press and P to PAUSE");
 	util.CursorUtil_Print(START_MAP_X + 54, 29, "Move: up down left right");
-
-	getch();
-	erase();
-	refresh();
 
 	util.CursorUtil_Set(curPos.x, curPos.y);
 }
@@ -85,12 +83,12 @@ void Display::Print_Wall()
 		{
 			if (board[y][x] == 1)
 			{
-				wattron(stdscr, COLOR_PAIR(WALL));
+				util.SetColorText(WALL);
 				mvprintw(curPos.y + y + START_MAP_Y, curPos.x + x * 2 + START_MAP_X, "  ");
 			}
 			else if(board[y][x] == 2)
 			{
-				wattron(stdscr, COLOR_PAIR(IMMUNE_WALL));
+				util.SetColorText(IMMUNE_WALL);
 				mvprintw(curPos.y + y + START_MAP_Y, curPos.x + x * 2 + START_MAP_X, "  ");
 			}
 		}
@@ -105,7 +103,7 @@ void Display::Print_Food(Point pos)
 	Point curPos = util.CursorUtil_Get();
 	// start_color();
     // init_pair(FOOD, COLOR_WHITE, COLOR_BLUE);
- 	wattron(stdscr, COLOR_PAIR(FOOD));
+ 	util.SetColorText(FOOD);
 
 	// util.CursorUtil_Set(pos.x, pos.y);
 	// std::cout << "★";
@@ -116,6 +114,12 @@ void Display::Print_Food(Point pos)
 
 void Display::Print_Snake(Snake snake)
 {
+	Util util;
+	Point curPos = util.CursorUtil_Get();
+	util.SetColorText(SNAKE);
+
+	for (auto i = snake.GetBody().begin(); i != snake.GetBody().end(); i++)
+		util.CursorUtil_Print(i->x, i->y, "  ");
 }
 
 void Display::Print_Pause()
