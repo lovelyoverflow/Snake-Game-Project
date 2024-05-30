@@ -37,22 +37,15 @@ void Display::Print_Title()
 	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y + 4, "     /__/:/       \\  \\:\\        \\  \\:\\        \\  \\:\\        \\  \\::/                \\  \\::/       \\  \\:\\        \\  \\:\\        \\  \\::/");
 	util.CursorUtil_Print(TITLE_POS_X - 25, TITLE_POS_Y + 5, "     \\__\\/         \\__\\/         \\__\\/         \\__\\/         \\__\\/                  \\__\\/         \\__\\/         \\__\\/         \\__\\/");
 
-	// while (!util.kbhit())
-	{
-		util.SetColorText(TITLE);
-		util.CursorUtil_Print(START_MAP_X + 55, 25, "Press and key to START");
-		// usleep(400);
-		// mvprintw(START_MAP_X + 55, 25, "                      ");
-		// usleep(400);
-		// refresh();
+	util.SetColorText(TITLE);
+	util.CursorUtil_Print(START_MAP_X + 55, 25, "Press and key to START");
 
-		util.CursorUtil_Print(START_MAP_X + 56, 28, "Press and P to PAUSE");
-		util.CursorUtil_Print(START_MAP_X + 54, 29, "Move: up down left right");
+	util.CursorUtil_Print(START_MAP_X + 56, 28, "Press and P to PAUSE");
+	util.CursorUtil_Print(START_MAP_X + 54, 29, "Move: up down left right");
 
-		getch();
-		erase();
-		refresh();
-	}
+	getch();
+	erase();
+	refresh();
 
 	util.CursorUtil_Set(curPos.x, curPos.y);
 }
