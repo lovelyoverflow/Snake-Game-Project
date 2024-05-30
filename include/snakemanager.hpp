@@ -1,6 +1,8 @@
 #ifndef __SNAKE_MANAGER_H_
 #define __SNAKE_MANAGER_H_
 
+#include "snake.hpp"
+#include "display.hpp"
 #include "util.hpp"
 
 class SnakeManager
