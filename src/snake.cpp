@@ -110,9 +110,9 @@ bool Snake::Is_Collistion()
 	return false;
 }
 
-std::list<Point>* Snake::GetBody()
+std::list<Point>& Snake::GetBody()
 {
-	return &body;
+	return body;
 }
 
 int& Snake::GetLevel()
@@ -207,8 +207,10 @@ Point Snake::EraseTail()
 	Util util;
 	Point tailPos = tail();
 
-	util.CursorUtil_Set(tailPos.x, tailPos.y);
-	std::cout << "  ";
+	// util.CursorUtil_Set(tailPos.x, tailPos.y);
+	// std::cout << "  ";
+	util.SetColorText(BLANK);
+	util.CursorUtil_Print(tailPos.x, tailPos.y, "  ");
 
 	body.remove(body.back());
 	return tailPos;
