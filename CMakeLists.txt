@@ -24,6 +24,6 @@ include_directories(${CURSES_INCLUDE_DIR})
 include_directories("./src" "./include")
 file (GLOB snake_SOURCES src/*.cpp)
 
-add_executable(snake src/main.cpp src/display.cpp src/point.cpp)
+add_executable(snake src/display.cpp src/snakemanager.cpp src/main.cpp src/point.cpp src/snake.cpp)
 target_link_libraries(snake ${CURSES_LIBRARY})
 install(TARGETS snake RUNTIME DESTINATION ${BIN_DIR})
