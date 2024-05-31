@@ -19,6 +19,7 @@ public:
 	void Game();
 	void Resume();
 	void GetStar(Point before);
+	void GetPoison(Point before);
 };
 
 #endif

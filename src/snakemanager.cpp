@@ -29,7 +29,10 @@ void SnakeManager::Init()
 	display.Print_Wall();
 	display.Print_Snake(snake);
 	snake.SetStarPos();
+	snake.SetPoisonPos();
+
 	display.Print_Food(snake.GetStarPos());
+	display.Print_Poison(snake.GetPoisonPos());
 	display.Print_Score(snake);
 }
 
@@ -105,14 +108,17 @@ void SnakeManager::Game()
 
 			if (snake.GetScore() % 100 == 0 && delay > 10)
 			{
-				delay = 100 - snake.GetLevel() * 10;
-				snake.GetLevel()++;
+				// delay = 100 - snake.GetLevel() * 10;
+				// snake.GetLevel()++;
 				
 			}
 
 			GetStar(before);
 			display.Print_Score(snake);
 		}
+
+		else if(snake.head() == snake.GetPoisonPos())
+			GetPoison(before);
 
 		refresh();
 		usleep(delay);
@@ -121,12 +127,35 @@ void SnakeManager::Game()
 
 void SnakeManager::Resume()
 {
+
 }
 
 void SnakeManager::Print_Tail(Point nextTail)
 {
+	Point curPos = util.CursorUtil_Get();
+
+	snake.GetBody().push_back(nextTail);
+
+	// util.CursorUtil_Set(nextTail.x, nextTail.y);
+	// std::cout << "��";
+	util.SetColorText(SNAKE);
+	util.CursorUtil_Print(nextTail.x, nextTail.y, "  ");
+
+	util.CursorUtil_Set(curPos.x, curPos.y);
 }
 
 void SnakeManager::GetStar(Point before)
 {
+	Print_Tail(before);
+
+	snake.SetStarPos();
+	display.Print_Food(snake.GetStarPos());
+}
+
+void SnakeManager::GetPoison(Point before)
+{
+	snake.EraseTail();
+
+	snake.SetPoisonPos();
+	display.Print_Poison(snake.GetPoisonPos());
 }
