@@ -49,3 +49,11 @@ bool Util::kbhit(void)
     ioctl(STDIN, FIONREAD, &nbbytes);
     return nbbytes;
 }
+
+int Util::Get_Random(int s, int e)
+{
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(s, e);
+
+    return dis(gen);
+}
