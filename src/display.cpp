@@ -1,4 +1,6 @@
 ﻿#include <iostream>
+#include <string>
+#include <sstream>
 #include <cstdlib>
 #include <ctime>
 #include <unistd.h>
@@ -12,10 +14,12 @@
 Display::Display()
 {
 	init_pair(WALL, COLOR_WHITE, COLOR_WHITE);
-	init_pair(FOOD, COLOR_WHITE, COLOR_BLUE);
+	init_pair(FOOD, COLOR_WHITE, COLOR_GREEN);
+	init_pair(POISON, COLOR_WHITE, COLOR_RED);
 	init_pair(IMMUNE_WALL, COLOR_WHITE, COLOR_CYAN);
 	init_pair(TITLE, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(SNAKE, COLOR_BLACK, COLOR_GREEN);
+	init_pair(SNAKE, COLOR_BLACK, COLOR_BLUE);
+	init_pair(SCORE, COLOR_GREEN, COLOR_BLACK);
 	init_pair(BLANK, COLOR_BLACK, COLOR_BLACK);
 }
 
@@ -112,6 +116,21 @@ void Display::Print_Food(Point pos)
 	util.CursorUtil_Set(curPos.x, curPos.y);
 }
 
+void Display::Print_Poison(Point pos)
+{
+	Util util;
+	Point curPos = util.CursorUtil_Get();
+	// start_color();
+    // init_pair(FOOD, COLOR_WHITE, COLOR_BLUE);
+ 	util.SetColorText(POISON);
+
+	// util.CursorUtil_Set(pos.x, pos.y);
+	// std::cout << "★";
+	mvprintw(pos.y, pos.x, "  ");
+
+	util.CursorUtil_Set(curPos.x, curPos.y);
+}
+
 void Display::Print_Snake(Snake snake)
 {
 	Util util;
@@ -120,6 +139,8 @@ void Display::Print_Snake(Snake snake)
 
 	for (auto i = snake.GetBody().begin(); i != snake.GetBody().end(); i++)
 		util.CursorUtil_Print(i->x, i->y, "  ");
+
+	util.CursorUtil_Set(curPos.x, curPos.y);
 }
 
 void Display::Print_Pause()
@@ -150,4 +171,12 @@ void Display::Print_Prompt(std::string str)
 
 void Display::Print_Score(Snake snake)
 {
+	Util util;
+	Point curPos = util.CursorUtil_Get();
+	util.SetColorText(SCORE);
+	std::stringstream buf;
+	buf << "Score: " << snake.GetScore();
+	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 4, buf.str().c_str());
+
+	util.CursorUtil_Set(curPos.x, curPos.y);
 }

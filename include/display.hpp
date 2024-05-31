@@ -23,7 +23,8 @@ public:
 	void Print_Title();										
 	void Print_GameOver();									
 	void Print_Wall();										
-	void Print_Food(Point pos);								
+	void Print_Food(Point pos);
+	void Print_Poison(Point pos);							
 	void Print_Snake(Snake snake);							
 	void Print_Pause();										
 	void Erase_Pause();										
