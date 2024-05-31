@@ -11,7 +11,8 @@ class Snake
 {
 private:
 	std::list<Point> body;
-	Point starPos;					
+	Point starPos;	
+	Point poisonPos;				
 	int direction;					
 	int level;						
 	int score;						
@@ -31,11 +32,14 @@ public:
 	int GetDirection();				
 	int& GetLevel();				
 	int& GetScore();
-	void SetStarPos();				
+	void SetStarPos();
+	void SetPoisonPos();				
 
 	void SaveScore();
 
-	Point GetStarPos();				
+	Point GetStarPos();	
+	Point GetPoisonPos();
+				
 	std::list<Point>& GetBody();	
 	Point EraseTail();				
 

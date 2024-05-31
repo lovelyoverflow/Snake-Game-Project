@@ -16,13 +16,15 @@ void Snake::Init()
 	body.clear();
 	level = 1;
 	score = 0;
-	Point pos[2] = {
+	Point pos[3] = {
 		{ START_SNAKE_POS_X, START_SNAKE_POS_Y },
-		{ START_SNAKE_POS_X, START_SNAKE_POS_Y + 1 }
+		{ START_SNAKE_POS_X, START_SNAKE_POS_Y + 1 },
+		{ START_SNAKE_POS_X, START_SNAKE_POS_Y + 2 }
 	};
 
 	body.push_front(pos[0]);
 	body.push_back(pos[1]);
+	body.push_back(pos[2]);
 
 	direction = KeyCode::RIGHT_KEY_CODE;
 }
@@ -166,20 +168,43 @@ int Snake::GetDirection()
 
 void Snake::SetStarPos()
 {
-	srand((unsigned int)time(NULL));
+	Util util;
+	int x = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
+	int y = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
 
-	int x = (((rand() % GBOARD_WIDTH) + 1 + START_MAP_X / 2) * 2);
-	int y = rand() % GBOARD_HEIGHT + START_MAP_Y + 1;
 	starPos.x = x;
 	starPos.y = y;
 
 	for (auto i = body.begin(); i != body.end(); i++)
 	{
 		if (starPos == *i) {
-			int x = (((rand() % GBOARD_WIDTH) + 1 + START_MAP_X / 2) * 2);
-			int y = rand() % GBOARD_HEIGHT + START_MAP_Y + 1;
+			int x = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
+			int y = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
+			
 			starPos.x = x;
 			starPos.y = y;
+		}
+	}
+}
+
+void Snake::SetPoisonPos()
+{
+	Util util;
+	int x = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
+	int y = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
+	
+	poisonPos.x = x;
+	poisonPos.y = y;
+
+	for (auto i = body.begin(); i != body.end(); i++)
+	{
+		if (starPos == *i)
+		{
+			int x = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
+			int y = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
+
+			poisonPos.x = x;
+			poisonPos.y = y;
 		}
 	}
 }
@@ -189,10 +214,15 @@ Point Snake::GetStarPos()
 	return starPos;
 }
 
+Point Snake::GetPoisonPos()
+{
+	return poisonPos;
+}
+
 void Snake::SaveScore()
 {
 	FILE * fp = fopen("C:\\Users\\score.txt", "wt");
-	Util util;
+	Util util;	
 	char name[100];
 
 	util.CursorUtil_Set(TITLE_POS_X + 30, TITLE_POS_Y + 17);
