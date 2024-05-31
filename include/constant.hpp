@@ -16,7 +16,7 @@ enum Resume {
 };
 
 enum Color {
-	WALL = 1, IMMUNE_WALL, SNAKE, FOOD, SCORE, TITLE, BLANK
+	WALL = 1, IMMUNE_WALL, SNAKE, FOOD, POISON, SCORE, TITLE, BLANK
 };
 
 #endif
