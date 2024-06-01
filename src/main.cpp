@@ -1,22 +1,28 @@
 #include <iostream>
 #include <ncurses.h>
+#include <locale>
 
-#include "point.hpp"
-#include "display.hpp"
+#include "snakemanager.hpp"
 
 int main(void)
 {
+	setlocale(LC_ALL, "");
+
 	initscr();
+	start_color();	
+
 	cbreak();
 	noecho();
 	keypad(stdscr, true);
 	curs_set(0);
 
-	Display display;
-	display.Print_Wall();
-	refresh();
+	SnakeManager manager;
+	manager.Init();
 
-	getch();
+	while(true)
+		manager.Game();
+		
+	// getch();
 
 	endwin();
 	return 0;

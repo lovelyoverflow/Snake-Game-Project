@@ -20,6 +20,7 @@ public:
 	void Resume();
 	void GetStar(Point before);
 	void GetPoison(Point before);
+	void GetPortal(Point before);
 };
 
 #endif

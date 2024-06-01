@@ -26,14 +26,17 @@ void SnakeManager::Init()
 	erase();
 	refresh();
 
+	display.Init_Wall();
 	display.Print_Wall();
 	display.Print_Snake(snake);
 	snake.SetStarPos();
 	snake.SetPoisonPos();
+	snake.SetPortalPos();
 
 	display.Print_Food(snake.GetStarPos());
 	display.Print_Poison(snake.GetPoisonPos());
 	display.Print_Score(snake);
+	display.Print_Portal(snake.GetPortalPos());
 }
 
 void SnakeManager::Game()
@@ -69,14 +72,30 @@ void SnakeManager::Game()
 				continue;
 		}
 
-		Point before = snake.EraseTail();
+		snake.Move();
+		display.Print_Snake(snake);
+		display.Print_Portal(snake.GetPortalPos());
 
-		if (snake.Is_Collistion() == true || snake.Is_Bitten() == true)
+		if(snake.head() == snake.GetPortalPos()[0])
+		{
+			Point nextPortal = snake.GetPortalPos()[1];
+			*snake.GetBody().begin() = nextPortal;
+			snake.Set_Direction(RIGHT_KEY_CODE);
+		}
+		else if(snake.head() == snake.GetPortalPos()[1])
+		{
+			Point nextPortal = snake.GetPortalPos()[0];
+			*snake.GetBody().begin() = nextPortal;
+			snake.Set_Direction(DOWN_KEY_CODE);
+		}
+
+		Point before = snake.EraseTail();
+		if (!snake.Is_Portal() && snake.Is_Collistion() == true || snake.Is_Bitten() == true)
 		{
 			int key;
-			// system("cls");
-
 			display.Print_GameOver();
+
+			// std::cout << snake.head() << std::endl;
 
 			key = getch();
 
@@ -98,19 +117,15 @@ void SnakeManager::Game()
 			}
 		}
 
-		snake.Move();
-		display.Print_Snake(snake);
-		// std::cout << " ASD " << std::endl;
-
+		
 		if (snake.head() == snake.GetStarPos())
 		{
 			snake.GetScore() += snake.GetLevel() * 10;
 
-			if (snake.GetScore() % 100 == 0 && delay > 10)
+			if (snake.GetScore() % 10 == 0)
 			{
 				// delay = 100 - snake.GetLevel() * 10;
 				// snake.GetLevel()++;
-				
 			}
 
 			GetStar(before);
@@ -120,6 +135,7 @@ void SnakeManager::Game()
 		else if(snake.head() == snake.GetPoisonPos())
 			GetPoison(before);
 
+		display.Print_Portal(snake.GetPortalPos());
 		refresh();
 		usleep(delay);
 	}
@@ -158,4 +174,9 @@ void SnakeManager::GetPoison(Point before)
 
 	snake.SetPoisonPos();
 	display.Print_Poison(snake.GetPoisonPos());
+}
+
+void SnakeManager::GetPortal(Point before)
+{
+	// *snake.GetBody().begin() = before;
 }

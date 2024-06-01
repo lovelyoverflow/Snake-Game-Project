@@ -11,6 +11,7 @@
 #define TITLE_POS_Y		10
 
 #include <string>
+#include <vector>
 
 #include "snake.hpp"
 
@@ -21,11 +22,14 @@ private:
 public:
 	Display();
 	void Print_Title();										
-	void Print_GameOver();									
+	void Print_GameOver();	
+	void Init_Wall();								
 	void Print_Wall();										
 	void Print_Food(Point pos);
 	void Print_Poison(Point pos);							
-	void Print_Snake(Snake snake);							
+	void Print_Snake(Snake snake);	
+	void Print_Portal(std::vector<Point> pos);
+
 	void Print_Pause();										
 	void Erase_Pause();										
 	void Print_Ranking();

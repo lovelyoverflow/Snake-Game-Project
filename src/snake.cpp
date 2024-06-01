@@ -31,14 +31,14 @@ void Snake::Init()
 
 void Snake::Set_Direction(int key)
 {
-	if (direction == KeyCode::UP_KEY_CODE && key == KeyCode::DOWN_KEY_CODE)
-		return;
-	if (direction == KeyCode::LEFT_KEY_CODE && key == KeyCode::RIGHT_KEY_CODE)
-		return;
-	if (direction == KeyCode::RIGHT_KEY_CODE && key == KeyCode::LEFT_KEY_CODE)
-		return;
-	if (direction == KeyCode::DOWN_KEY_CODE && key == KeyCode::UP_KEY_CODE)
-		return;
+	// if (direction == KeyCode::UP_KEY_CODE && key == KeyCode::DOWN_KEY_CODE)
+	// 	return;
+	// if (direction == KeyCode::LEFT_KEY_CODE && key == KeyCode::RIGHT_KEY_CODE)
+	// 	return;
+	// if (direction == KeyCode::RIGHT_KEY_CODE && key == KeyCode::LEFT_KEY_CODE)
+	// 	return;
+	// if (direction == KeyCode::DOWN_KEY_CODE && key == KeyCode::UP_KEY_CODE)
+	// 	return;
 
 	direction = key;
 }
@@ -107,6 +107,27 @@ bool Snake::Is_Collistion()
 		if (board[headPos.y + 1 - START_MAP_Y][(headPos.x - START_MAP_X) / 2] == 1)
 			return true;
 		break;
+	}
+
+	return false;
+}
+
+bool Snake::Is_Portal()
+{
+	Point headPos = head();
+	Display display;
+	int board[GBOARD_HEIGHT + 2][GBOARD_WIDTH + 2];
+
+	display.GetBoard(board);
+
+	switch (direction)
+	{
+	case KeyCode::LEFT_KEY_CODE:
+		if (headPos.x - 2 == GetPortalPos()[1].x)
+			return true;
+	case KeyCode::UP_KEY_CODE:
+		if (headPos.y - 1 == GetPortalPos()[0].y)
+			return true;
 	}
 
 	return false;
@@ -209,6 +230,20 @@ void Snake::SetPoisonPos()
 	}
 }
 
+void Snake::SetPortalPos()
+{
+	Util util;
+	
+	int x1 = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
+	int y1 = 0;
+
+	int x2 = 0;
+	int y2 = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
+
+	portalPos.push_back(Point(x1, y1));
+	portalPos.push_back(Point(x2, y2));
+}
+
 Point Snake::GetStarPos()
 {
 	return starPos;
@@ -217,6 +252,11 @@ Point Snake::GetStarPos()
 Point Snake::GetPoisonPos()
 {
 	return poisonPos;
+}
+
+std::vector<Point> Snake::GetPortalPos()
+{
+	return portalPos;
 }
 
 void Snake::SaveScore()

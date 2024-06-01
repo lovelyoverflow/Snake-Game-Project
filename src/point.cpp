@@ -12,6 +12,11 @@ bool Point::operator==(const Point& pos)
 	return false;
 }
 
+bool Point::operator!=(const Point& pos)
+{
+	return !(*this == pos);
+}
+
 void Point::operator=(const Point& pos)
 {
 	x = pos.x;

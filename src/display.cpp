@@ -20,6 +20,7 @@ Display::Display()
 	init_pair(TITLE, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(SNAKE, COLOR_BLACK, COLOR_BLUE);
 	init_pair(SCORE, COLOR_GREEN, COLOR_BLACK);
+	init_pair(PORTAL, COLOR_BLACK, COLOR_MAGENTA);
 	init_pair(BLANK, COLOR_BLACK, COLOR_BLACK);
 }
 
@@ -54,14 +55,13 @@ void Display::Print_Title()
 
 void Display::Print_GameOver()
 {
-
+	Util util;
+	util.SetColorText(TITLE);
+	util.CursorUtil_Print(GBOARD_WIDTH, GBOARD_HEIGHT / 2, " GAME OVER ");
 }
 
-void Display::Print_Wall()
+void Display::Init_Wall()
 {
-	Util util;
-	Point curPos = util.CursorUtil_Get();
-
 	for(int y = 0; y < GBOARD_HEIGHT + 2; y++)
 	{
 		for(int x = 0; x < GBOARD_WIDTH + 2; x++)
@@ -80,6 +80,11 @@ void Display::Print_Wall()
 			}
 		}
 	}
+}
+void Display::Print_Wall()
+{
+	Util util;
+	Point curPos = util.CursorUtil_Get();
 
 	for (int y = 0; y < GBOARD_HEIGHT + 2; y++)
 	{
@@ -95,6 +100,11 @@ void Display::Print_Wall()
 				util.SetColorText(IMMUNE_WALL);
 				mvprintw(curPos.y + y + START_MAP_Y, curPos.x + x * 2 + START_MAP_X, "  ");
 			}
+			// else if(board[y][x] == 5)
+			// {
+			// 	util.SetColorText(PORTAL);
+			// 	mvprintw(curPos.y + y + START_MAP_Y, curPos.x + x * 2 + START_MAP_X, "  ");
+			// }
 		}
 	}
 
@@ -131,14 +141,27 @@ void Display::Print_Poison(Point pos)
 	util.CursorUtil_Set(curPos.x, curPos.y);
 }
 
+void Display::Print_Portal(std::vector<Point> pos)
+{
+	Util util;
+	Point curPos = util.CursorUtil_Get();
+
+	util.SetColorText(PORTAL);
+	mvprintw(pos[0].y, pos[0].x, "  ");
+	mvprintw(pos[1].y, pos[1].x, "  ");
+
+	util.CursorUtil_Set(curPos.x, curPos.y);
+}
+
 void Display::Print_Snake(Snake snake)
 {
 	Util util;
 	Point curPos = util.CursorUtil_Get();
 	util.SetColorText(SNAKE);
 
-	for (auto i = snake.GetBody().begin(); i != snake.GetBody().end(); i++)
-		util.CursorUtil_Print(i->x, i->y, "  ");
+	// for (auto i = snake.GetBody().begin(); i != snake.GetBody().end(); i++)
+	// 	util.CursorUtil_Print(i->x, i->y, "  ");
+	util.CursorUtil_Print(snake.head().x, snake.head().y, "  ");
 
 	util.CursorUtil_Set(curPos.x, curPos.y);
 }
