@@ -140,9 +140,15 @@ void SnakeManager::Game()
 		else if(snake.head() == snake.GetPoisonPos()) // 독 아이템 먹었을 때
 			GetPoison(before);
 
+		// ================ 5초 마다 아이템 다시 그리기 =================== //
 		auto end = std::chrono::high_resolution_clock::now();
 		std::chrono::duration<double> duration = end - start;
 
+		/*
+			item_flag 변수 존재 이유
+			5초에서 6초로 가는 1초 사이에 while문이 계속 실행돼서 아이템을 계속 다시 그림
+			뭔 소린지 이해 안가거나 궁금하면 if문에서 item_flag 지우고 실행해보기
+		*/
 		if(static_cast<int>(duration.count()) > 0 && static_cast<int>(duration.count()) % 5 == 0 && item_flag)
 		{
 			item_time = std::chrono::high_resolution_clock::now();
@@ -153,7 +159,7 @@ void SnakeManager::Game()
 		}
 
 		auto item_duration = item_time - std::chrono::high_resolution_clock::now();
-		if(static_cast<int>(item_duration.count()) > 1)
+		if(static_cast<int>(item_duration.count()) > 1) // 1초 지나야 다시 아이템 그릴 수 있도록 item_flag = true
 			item_flag = true;
 
 		display.Print_Portal(snake.GetPortalPos());

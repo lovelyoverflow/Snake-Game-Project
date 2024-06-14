@@ -203,7 +203,7 @@ void Snake::SetStarPos()
 	Util util;
 	int x = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
 	int y = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
-
+	
 	starPos.x = x;
 	starPos.y = y;
 
