@@ -16,6 +16,9 @@ void SnakeManager::Init()
 {
 	snake.Init();
 	util.CursorUtil_Hide();
+	start = std::chrono::high_resolution_clock::now();
+	item_flag = true;
+	item_time = std::chrono::high_resolution_clock::now();
 
 	// system("title Snake");
 	// system("mode con cols=150 lines=40");
@@ -121,6 +124,7 @@ void SnakeManager::Game()
 		
 		if (snake.head() == snake.GetStarPos()) // 아이템 먹었을 때
 		{
+			start = std::chrono::high_resolution_clock::now();
 			snake.GetScore() += snake.GetLevel() * 10; // 점수 계산인데 일단 대충 만들었음. 먹은 아이템 * 10
 
 			if (snake.GetScore() % 10 == 0)
@@ -135,6 +139,22 @@ void SnakeManager::Game()
 
 		else if(snake.head() == snake.GetPoisonPos()) // 독 아이템 먹었을 때
 			GetPoison(before);
+
+		auto end = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double> duration = end - start;
+
+		if(static_cast<int>(duration.count()) > 0 && static_cast<int>(duration.count()) % 5 == 0 && item_flag)
+		{
+			item_time = std::chrono::high_resolution_clock::now();
+			display.Erase_Food(snake.GetStarPos());
+			snake.SetStarPos();
+			display.Print_Food(snake.GetStarPos());
+			item_flag = false;
+		}
+
+		auto item_duration = item_time - std::chrono::high_resolution_clock::now();
+		if(static_cast<int>(item_duration.count()) > 1)
+			item_flag = true;
 
 		display.Print_Portal(snake.GetPortalPos());
 		refresh();

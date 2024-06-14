@@ -26,6 +26,8 @@ public:
 	void Init_Wall();								
 	void Print_Wall();										
 	void Print_Food(Point pos);
+	void Erase_Food(Point pos);
+	
 	void Print_Poison(Point pos);							
 	void Print_Snake(Snake snake);	
 	void Print_Portal(std::vector<Point> pos);

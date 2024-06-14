@@ -11,6 +11,9 @@ private:
 	Snake snake;
 	Display display;
 	Util util;
+	std::chrono::time_point<std::chrono::high_resolution_clock> start;
+	std::chrono::time_point<std::chrono::high_resolution_clock> item_time;
+	bool item_flag;
 private:
 	void Print_Tail(Point nextTail);	// nextTail좌표에 꼬리 그리기
 public:

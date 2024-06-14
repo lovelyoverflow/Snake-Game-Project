@@ -100,11 +100,6 @@ void Display::Print_Wall()
 				util.SetColorText(IMMUNE_WALL);
 				mvprintw(curPos.y + y + START_MAP_Y, curPos.x + x * 2 + START_MAP_X, "  ");
 			}
-			// else if(board[y][x] == 5)
-			// {
-			// 	util.SetColorText(PORTAL);
-			// 	mvprintw(curPos.y + y + START_MAP_Y, curPos.x + x * 2 + START_MAP_X, "  ");
-			// }
 		}
 	}
 
@@ -115,12 +110,19 @@ void Display::Print_Food(Point pos)
 {
 	Util util;
 	Point curPos = util.CursorUtil_Get();
-	// start_color();
-    // init_pair(FOOD, COLOR_WHITE, COLOR_BLUE);
- 	util.SetColorText(FOOD);
 
-	// util.CursorUtil_Set(pos.x, pos.y);
-	// std::cout << "★";
+ 	util.SetColorText(FOOD);
+	mvprintw(pos.y, pos.x, "  ");
+
+	util.CursorUtil_Set(curPos.x, curPos.y);
+}
+
+void Display::Erase_Food(Point pos)
+{
+	Util util;
+	Point curPos = util.CursorUtil_Get();
+
+ 	util.SetColorText(BLANK);
 	mvprintw(pos.y, pos.x, "  ");
 
 	util.CursorUtil_Set(curPos.x, curPos.y);
@@ -130,12 +132,8 @@ void Display::Print_Poison(Point pos)
 {
 	Util util;
 	Point curPos = util.CursorUtil_Get();
-	// start_color();
-    // init_pair(FOOD, COLOR_WHITE, COLOR_BLUE);
- 	util.SetColorText(POISON);
 
-	// util.CursorUtil_Set(pos.x, pos.y);
-	// std::cout << "★";
+ 	util.SetColorText(POISON);
 	mvprintw(pos.y, pos.x, "  ");
 
 	util.CursorUtil_Set(curPos.x, curPos.y);
@@ -159,8 +157,6 @@ void Display::Print_Snake(Snake snake)
 	Point curPos = util.CursorUtil_Get();
 	util.SetColorText(SNAKE);
 
-	// for (auto i = snake.GetBody().begin(); i != snake.GetBody().end(); i++)
-	// 	util.CursorUtil_Print(i->x, i->y, "  ");
 	util.CursorUtil_Print(snake.head().x, snake.head().y, "  ");
 
 	util.CursorUtil_Set(curPos.x, curPos.y);

@@ -3,6 +3,8 @@
 
 #include <list>
 #include <vector>
+#include <chrono>
+
 #define START_SNAKE_POS_X	70
 #define START_SNAKE_POS_Y	25
 
@@ -15,6 +17,7 @@ private:
 	Point starPos;	
 	Point poisonPos;
 	std::vector<Point> portalPos;		
+
 	int direction;					
 	int level;						
 	int score;						
