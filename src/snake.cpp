@@ -16,6 +16,8 @@ void Snake::Init()
 	body.clear();
 	level = 1;
 	score = 0;
+
+	//초기 스네이크 위치 지정
 	Point pos[3] = {
 		{ START_SNAKE_POS_X, START_SNAKE_POS_Y },
 		{ START_SNAKE_POS_X, START_SNAKE_POS_Y + 1 },
@@ -31,6 +33,12 @@ void Snake::Init()
 
 void Snake::Set_Direction(int key)
 {
+	/*
+		주석 처리한 부분은
+		만약 내가 왼쪽으로 가는중인데 오른쪽 방향키 눌렀을 때 방지하는건데
+		과제에서는 그 경우에 그냥 게임오버라서 주석처리
+	*/
+
 	// if (direction == KeyCode::UP_KEY_CODE && key == KeyCode::DOWN_KEY_CODE)
 	// 	return;
 	// if (direction == KeyCode::LEFT_KEY_CODE && key == KeyCode::RIGHT_KEY_CODE)
@@ -89,6 +97,9 @@ bool Snake::Is_Collistion()
 
 	display.GetBoard(board);
 
+	/*
+		충돌 검사는 내가 가려는 방향을 먼저 계산한 다음 그 부분이 1(벽)인지 확인
+	*/
 	switch (direction)
 	{
 	case KeyCode::LEFT_KEY_CODE:
@@ -196,6 +207,7 @@ void Snake::SetStarPos()
 	starPos.x = x;
 	starPos.y = y;
 
+	//만약 스네이크가 있는 부분에 아이템을 띄우려고 하면 다시 랜덤 돌리기
 	for (auto i = body.begin(); i != body.end(); i++)
 	{
 		if (starPos == *i) {
@@ -217,6 +229,7 @@ void Snake::SetPoisonPos()
 	poisonPos.x = x;
 	poisonPos.y = y;
 
+	//만약 스네이크가 있는 부분에 독 아이템을 띄우려고 하면 다시 랜덤 돌리기
 	for (auto i = body.begin(); i != body.end(); i++)
 	{
 		if (starPos == *i)
