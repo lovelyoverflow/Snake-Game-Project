@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <ncurses.h>
+#include <algorithm>
 #include "display.hpp"
 #include "snake.hpp"
 #include "constant.hpp"
@@ -83,12 +84,14 @@ void SnakeManager::Game()
 		if(snake.head() == snake.GetPortalPos()[0]) // 위에 있는 포탈 들어갔을 때
 		{
 			Point nextPortal = snake.GetPortalPos()[1];
+			snake.GetGate()++;
 			*snake.GetBody().begin() = nextPortal;
 			snake.Set_Direction(RIGHT_KEY_CODE);
 		}
 		else if(snake.head() == snake.GetPortalPos()[1]) // 왼쪽에 있는 포탈 들어갔을 때
 		{
 			Point nextPortal = snake.GetPortalPos()[0];
+			snake.GetGate()++;
 			*snake.GetBody().begin() = nextPortal;
 			snake.Set_Direction(DOWN_KEY_CODE);
 		}
@@ -126,7 +129,7 @@ void SnakeManager::Game()
 		{
 			start = std::chrono::high_resolution_clock::now();
 			snake.GetScore() += snake.GetLevel() * 10; // 점수 계산인데 일단 대충 만들었음. 먹은 아이템 * 10
-
+			snake.GetGrowth()++;
 			if (snake.GetScore() % 10 == 0)
 			{
 				// delay = 100 - snake.GetLevel() * 10;
@@ -134,11 +137,13 @@ void SnakeManager::Game()
 			}
 
 			GetStar(before);
-			display.Print_Score(snake);
 		}
 
 		else if(snake.head() == snake.GetPoisonPos()) // 독 아이템 먹었을 때
+		{
 			GetPoison(before);
+			snake.GetPoison()++;
+		}
 
 		// ================ 5초 마다 아이템 다시 그리기 =================== //
 		auto end = std::chrono::high_resolution_clock::now();
@@ -163,6 +168,7 @@ void SnakeManager::Game()
 			item_flag = true;
 
 		display.Print_Portal(snake.GetPortalPos());
+		display.Print_Score(snake);
 		refresh();
 		usleep(delay);
 	}
@@ -179,8 +185,6 @@ void SnakeManager::Print_Tail(Point nextTail)
 
 	snake.GetBody().push_back(nextTail);
 
-	// util.CursorUtil_Set(nextTail.x, nextTail.y);
-	// std::cout << "��";
 	util.SetColorText(SNAKE);
 	util.CursorUtil_Print(nextTail.x, nextTail.y, "  ");
 
@@ -193,6 +197,7 @@ void SnakeManager::GetStar(Point before)
 
 	snake.SetStarPos();
 	display.Print_Food(snake.GetStarPos());
+	snake.GetLevel() = std::max(snake.GetLevel(), static_cast<int>(snake.GetBody().size()));
 }
 
 void SnakeManager::GetPoison(Point before)

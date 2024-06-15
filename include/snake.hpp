@@ -20,7 +20,10 @@ private:
 
 	int direction;					
 	int level;						
-	int score;						
+	int score;		
+	int growth;
+	int poison;
+	int gate;				
 private:
 	void Move_UP();
 	void Move_Down();
@@ -38,6 +41,9 @@ public:
 	int GetDirection();				
 	int& GetLevel();				
 	int& GetScore();
+	int& GetGrowth();
+	int& GetPoison();
+	int& GetGate();
 	void SetStarPos();
 	void SetPoisonPos();	
 	void SetPortalPos();			

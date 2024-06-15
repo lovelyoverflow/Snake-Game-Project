@@ -14,8 +14,11 @@ Snake::Snake()
 void Snake::Init()
 {
 	body.clear();
-	level = 1;
+	level = 3;
 	score = 0;
+	growth = 0;
+	poison = 0;
+	gate = 0;
 
 	//초기 스네이크 위치 지정
 	Point pos[3] = {
@@ -157,6 +160,21 @@ int& Snake::GetLevel()
 int& Snake::GetScore()
 {
 	return score;
+}
+
+int &Snake::GetGrowth()
+{
+    return growth;
+}
+
+int &Snake::GetPoison()
+{
+    return poison;
+}
+
+int &Snake::GetGate()
+{
+    return gate;
 }
 
 Point Snake::head()

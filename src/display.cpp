@@ -193,9 +193,17 @@ void Display::Print_Score(Snake snake)
 	Util util;
 	Point curPos = util.CursorUtil_Get();
 	util.SetColorText(SCORE);
-	std::stringstream buf;
-	buf << "Score: " << snake.GetScore();
-	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 4, buf.str().c_str());
-
+	std::stringstream level;
+	level << "B: " << snake.GetBody().size() << " / " << snake.GetLevel();
+	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 4, level.str().c_str());
+	std::stringstream growth;
+	growth << "+: " << snake.GetGrowth();
+	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 5, growth.str().c_str());
+	std::stringstream poison;
+	poison << "-: " << snake.GetPoison();
+	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 6, poison.str().c_str());
+	std::stringstream gate;
+	gate << "B: " << snake.GetGate();
+	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 7, gate.str().c_str());
 	util.CursorUtil_Set(curPos.x, curPos.y);
 }
