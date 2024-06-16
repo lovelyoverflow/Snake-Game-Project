@@ -102,12 +102,12 @@ void Display::Print_Wall()
 			if (board[y][x] == 1)
 			{
 				util.SetColorText(WALL);
-				mvprintw(curPos.y + y + START_MAP_Y, curPos.x + x * 2 + START_MAP_X, "  ");
+				mvprintw(y + START_MAP_Y, x * 2 + START_MAP_X, "  ");
 			}
 			else if(board[y][x] == 2)
 			{
 				util.SetColorText(IMMUNE_WALL);
-				mvprintw(curPos.y + y + START_MAP_Y, curPos.x + x * 2 + START_MAP_X, "  ");
+				mvprintw(y + START_MAP_Y, x * 2 + START_MAP_X, "  ");
 			}
 		}
 	}

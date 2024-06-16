@@ -264,15 +264,17 @@ void Snake::SetPoisonPos()
 void Snake::SetPortalPos()
 {
 	Util util;
-	
+	std::vector<Point> tmp;
 	int x1 = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
 	int y1 = 0;
 
 	int x2 = 0;
 	int y2 = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
 
-	portalPos.push_back(Point(x1, y1));
-	portalPos.push_back(Point(x2, y2));
+	tmp.push_back(Point(x1, y1));
+	tmp.push_back(Point(x2, y2));
+
+	portalPos = tmp;
 }
 
 Point Snake::GetStarPos()

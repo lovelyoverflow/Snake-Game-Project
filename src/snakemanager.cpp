@@ -16,7 +16,8 @@ SnakeManager::SnakeManager()
 void SnakeManager::Init()
 {
 	snake.Init();
-	display.Load_Wall(1);
+	stage_level = 1;
+	display.Load_Wall(stage_level);
 	util.CursorUtil_Hide();
 	start = std::chrono::high_resolution_clock::now();
 	item_flag = true;
@@ -127,10 +128,15 @@ void SnakeManager::Game()
 			start = std::chrono::high_resolution_clock::now();
 			snake.GetScore() += snake.GetLevel() * 10; // 점수 계산인데 일단 대충 만들었음. 먹은 아이템 * 10
 			snake.GetGrowth()++;
-			if (snake.GetScore() % 10 == 0)
+			if (snake.GetGrowth() % 5 == 0)
 			{
-				// delay = 100 - snake.GetLevel() * 10;
-				// snake.GetLevel()++;
+				if(stage_level < 4)
+					stage_level++;
+				display.Load_Wall(stage_level);
+				snake.SetPortalPos();
+				display.Print_Portal(snake.GetPortalPos());
+				display.Print_Wall();
+				refresh();
 			}
 
 			GetStar(before);
