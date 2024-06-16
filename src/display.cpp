@@ -82,10 +82,12 @@ void Display::Init_Wall()
 	}
 }
 
-void Display::Load_Wall(const std::string &filename)
+void Display::Load_Wall(int stage)
 {
 	Util util;
-	board = util.readMapFromFile(filename);
+	std::stringstream filename;
+	filename << "maps/stage" << stage << ".txt";
+	board = util.readMapFromFile(filename.str());
 }
 
 void Display::Print_Wall()

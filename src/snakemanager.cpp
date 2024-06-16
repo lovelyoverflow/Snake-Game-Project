@@ -16,7 +16,7 @@ SnakeManager::SnakeManager()
 void SnakeManager::Init()
 {
 	snake.Init();
-	display.Load_Wall("maps/stage1.txt");
+	display.Load_Wall(1);
 	util.CursorUtil_Hide();
 	start = std::chrono::high_resolution_clock::now();
 	item_flag = true;

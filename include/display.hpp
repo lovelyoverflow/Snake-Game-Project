@@ -24,7 +24,7 @@ public:
 	void Print_Title();										
 	void Print_GameOver();	
 	void Init_Wall();
-	void Load_Wall(const std::string& filename);							
+	void Load_Wall(int stage);							
 	void Print_Wall();										
 	void Print_Food(Point pos);
 	void Erase_Food(Point pos);
