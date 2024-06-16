@@ -3,6 +3,10 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 #include <ncurses.h>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <sstream>
 
 void Util::CursorUtil_Set(int x, int y)
 {
@@ -56,4 +60,29 @@ int Util::Get_Random(int s, int e)
     std::uniform_int_distribution<> dis(s, e);
 
     return dis(gen);
+}
+
+std::vector<std::vector<int>> Util::readMapFromFile(const std::string &filename)
+{
+    std::ifstream file(filename);
+    std::vector<std::vector<int>> map;
+    
+    if (!file.is_open()) {
+        std::cerr << "Error: Could not open file " << filename << std::endl;
+        return map;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::vector<int> row;
+        std::stringstream ss(line);
+        int number;
+        while (ss >> number) {
+            row.push_back(number);
+        }
+        map.push_back(row);
+    }
+
+    file.close();
+    return map;
 }

@@ -19,6 +19,7 @@ public:
 	bool kbhit(void);										// 
 
 	int Get_Random(int s, int e);							// s ~ e 범위의 랜덤 수 반환
+	std::vector<std::vector<int>> readMapFromFile(const std::string& filename);
 };
 
 #endif

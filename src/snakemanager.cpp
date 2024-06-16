@@ -16,21 +16,18 @@ SnakeManager::SnakeManager()
 void SnakeManager::Init()
 {
 	snake.Init();
+	display.Load_Wall("maps/stage1.txt");
 	util.CursorUtil_Hide();
 	start = std::chrono::high_resolution_clock::now();
 	item_flag = true;
 	item_time = std::chrono::high_resolution_clock::now();
 	is_over = false;
-	// system("title Snake");
-	// system("mode con cols=150 lines=40");
-	// system("cls");
 
 	display.Print_Title();
 	getch();
 	erase();
 	refresh();
 
-	display.Init_Wall();
 	display.Print_Wall();
 	display.Print_Snake(snake);
 	snake.SetStarPos();
@@ -144,7 +141,7 @@ void SnakeManager::Game()
 			GetPoison(before);
 			snake.GetPoison()++;
 
-			if(snake.GetBody().size() <= 2)
+			if(snake.GetBody().size() < 3)
 			{
 				display.Print_GameOver();
 				

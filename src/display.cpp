@@ -24,7 +24,7 @@ Display::Display()
 	init_pair(BLANK, COLOR_BLACK, COLOR_BLACK);
 }
 
-int Display::board[GBOARD_HEIGHT + 2][GBOARD_WIDTH + 2] = { 0, };
+std::vector<std::vector<int>> Display::board(GBOARD_HEIGHT + 2, std::vector<int>(GBOARD_WIDTH + 2, 0));
 
 void Display::Print_Title()
 {
@@ -81,6 +81,13 @@ void Display::Init_Wall()
 		}
 	}
 }
+
+void Display::Load_Wall(const std::string &filename)
+{
+	Util util;
+	board = util.readMapFromFile(filename);
+}
+
 void Display::Print_Wall()
 {
 	Util util;
@@ -174,13 +181,9 @@ void Display::Print_Ranking()
 {
 }
 
-void Display::GetBoard(int(*boa)[GBOARD_WIDTH + 2])
+std::vector<std::vector<int>>& Display::GetBoard()
 {
-	for (int y = 0; y < GBOARD_HEIGHT + 2; y++)
-	{
-		for (int x = 0; x < GBOARD_WIDTH + 2; x++)
-			boa[y][x] = board[y][x];
-	}
+	return board;
 }
 
 void Display::Print_Prompt(std::string str)

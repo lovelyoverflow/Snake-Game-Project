@@ -96,9 +96,9 @@ bool Snake::Is_Collistion()
 {
 	Point headPos = head();
 	Display display;
-	int board[GBOARD_HEIGHT + 2][GBOARD_WIDTH + 2];
+	std::vector<std::vector<int>> board;
 
-	display.GetBoard(board);
+	board = display.GetBoard();
 
 	/*
 		충돌 검사는 내가 가려는 방향을 먼저 계산한 다음 그 부분이 1(벽)인지 확인
@@ -130,9 +130,9 @@ bool Snake::Is_Portal()
 {
 	Point headPos = head();
 	Display display;
-	int board[GBOARD_HEIGHT + 2][GBOARD_WIDTH + 2];
+	std::vector<std::vector<int>> board;
 
-	display.GetBoard(board);
+	board = display.GetBoard();
 
 	switch (direction)
 	{

@@ -18,12 +18,13 @@
 class Display
 {
 private:
-	static int board[GBOARD_HEIGHT + 2][GBOARD_WIDTH + 2];
+	static std::vector<std::vector<int>> board;
 public:
 	Display();
 	void Print_Title();										
 	void Print_GameOver();	
-	void Init_Wall();								
+	void Init_Wall();
+	void Load_Wall(const std::string& filename);							
 	void Print_Wall();										
 	void Print_Food(Point pos);
 	void Erase_Food(Point pos);
@@ -36,7 +37,7 @@ public:
 	void Erase_Pause();										
 	void Print_Ranking();
 
-	void GetBoard(int(*boa)[GBOARD_WIDTH + 2]);				
+	std::vector<std::vector<int>>& GetBoard();				
 
 	void Print_Prompt(std::string str);						
 	void Print_Score(Snake snake);							
