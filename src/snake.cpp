@@ -137,10 +137,10 @@ bool Snake::Is_Portal()
 	switch (direction)
 	{
 	case KeyCode::LEFT_KEY_CODE:
-		if (headPos.x - 2 == GetPortalPos()[1].x)
+		if (headPos.y == GetPortalPos()[1].y)
 			return true;
 	case KeyCode::UP_KEY_CODE:
-		if (headPos.y - 1 == GetPortalPos()[0].y)
+		if (headPos.x == GetPortalPos()[0].x)
 			return true;
 	}
 

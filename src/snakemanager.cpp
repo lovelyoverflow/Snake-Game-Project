@@ -73,8 +73,6 @@ void SnakeManager::Game()
 				continue;
 		}
 
-		snake.Move(); // 현재 방향으로 이동 중인 스네이크 리스트 head 원소 변경
-		display.Print_Snake(snake); // 스네이크 리스트에 있는 좌표들에 출력
 		display.Print_Portal(snake.GetPortalPos()); // 만약 포탈 들어가면 지워지니까 계속 그림
 
 		/*
@@ -124,6 +122,8 @@ void SnakeManager::Game()
 			}
 		}
 
+		snake.Move(); // 현재 방향으로 이동 중인 스네이크 리스트 head 원소 변경
+		display.Print_Snake(snake); // 스네이크 리스트에 있는 좌표들에 출력
 		
 		if (snake.head() == snake.GetStarPos()) // 아이템 먹었을 때
 		{
@@ -146,13 +146,13 @@ void SnakeManager::Game()
 
 			if(snake.GetBody().size() <= 2)
 			{
-			display.Print_GameOver();
-			
-			while (true)
-			{
 				display.Print_GameOver();
-				getch();
-			}
+				
+				while (true)
+				{
+					display.Print_GameOver();
+					getch();
+				}
 			}
 		}
 
