@@ -20,7 +20,7 @@ void SnakeManager::Init()
 	start = std::chrono::high_resolution_clock::now();
 	item_flag = true;
 	item_time = std::chrono::high_resolution_clock::now();
-
+	is_over = false;
 	// system("title Snake");
 	// system("mode con cols=150 lines=40");
 	// system("cls");
@@ -143,6 +143,17 @@ void SnakeManager::Game()
 		{
 			GetPoison(before);
 			snake.GetPoison()++;
+
+			if(snake.GetBody().size() <= 2)
+			{
+			display.Print_GameOver();
+			
+			while (true)
+			{
+				display.Print_GameOver();
+				getch();
+			}
+			}
 		}
 
 		// ================ 5초 마다 아이템 다시 그리기 =================== //
