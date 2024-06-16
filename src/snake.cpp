@@ -305,11 +305,12 @@ void Snake::SetItemPos()
 	}
 }
 
-void Snake::SetPortalPos()
+void Snake::SetPortalPos() // 포탈 랜덤 생성
 {
 	Util util;
-	std::vector<Point> headPos;
-	int x1 = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2 + 1) * 2;
+	std::vector<Point> tmp;
+	std::vector<Point> portal_tmp;
+	int x1 = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
 	int y1 = 0;
 
 	int x2 = 0;
@@ -321,10 +322,11 @@ void Snake::SetPortalPos()
 	int x4 = (GBOARD_WIDTH + START_MAP_X / 2 + 1) * 2;
 	int y4 = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
 
-	headPos.push_back(Point(x1, y1));
-	headPos.push_back(Point(x2, y2));
-	headPos.push_back(Point(x3, y3));
-	headPos.push_back(Point(x4, y4));
+// 상하좌우 벽에 4개 만들어 놓고 2개 랜덤 선택
+	tmp.push_back(Point(x1, y1));
+	tmp.push_back(Point(x2, y2));
+	tmp.push_back(Point(x3, y3));
+	tmp.push_back(Point(x4, y4));
 
 	int firstPortal = util.Get_Random(0, 10000) % 4;
 	int secondPortal = util.Get_Random(0, 10000) % 4;
@@ -332,8 +334,10 @@ void Snake::SetPortalPos()
 	while(firstPortal == secondPortal)
 		secondPortal = util.Get_Random(0, 10000) % 4;
 
-	portalPos.push_back(headPos[firstPortal]);
-	portalPos.push_back(headPos[secondPortal]);
+	portal_tmp.push_back(tmp[firstPortal]);
+	portal_tmp.push_back(tmp[secondPortal]);
+	
+	portalPos = portal_tmp;
 }
 
 Point Snake::GetStarPos()
