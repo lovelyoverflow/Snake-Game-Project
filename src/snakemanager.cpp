@@ -34,9 +34,11 @@ void SnakeManager::Init()
 	snake.SetStarPos();
 	snake.SetPoisonPos();
 	snake.SetPortalPos();
+	snake.SetItemPos();
 
 	display.Print_Food(snake.GetStarPos());
 	display.Print_Poison(snake.GetPoisonPos());
+	display.Print_Item(snake.GetItemPos());
 	display.Print_Score(snake);
 	display.Print_Portal(snake.GetPortalPos());
 }
@@ -45,7 +47,7 @@ void SnakeManager::Game()
 {
 	Util util;
 	int key;
-	int delay = 100000;
+	int delay = 100000; // 게임 속도 조절, 노란색 아이템 먹으면 감소하면서 속도 빨라짐
 
 	while (true)
 	{
@@ -157,6 +159,14 @@ void SnakeManager::Game()
 					getch();
 				}
 			}
+		}
+
+		else if(snake.head() == snake.GetItemPos()) // 속도 빨라지는 아이템 먹었을 때
+		{
+			delay -= 5000;
+			snake.GetSpeed()++;	// 속도 출력용 변수
+			snake.SetItemPos();
+			display.Print_Item(snake.GetItemPos());
 		}
 
 		// ================ 5초 마다 아이템 다시 그리기 =================== //

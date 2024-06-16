@@ -16,6 +16,7 @@ Display::Display()
 	init_pair(WALL, COLOR_WHITE, COLOR_WHITE);
 	init_pair(FOOD, COLOR_WHITE, COLOR_GREEN);
 	init_pair(POISON, COLOR_WHITE, COLOR_RED);
+	init_pair(ITEM, COLOR_WHITE, COLOR_YELLOW);
 	init_pair(IMMUNE_WALL, COLOR_WHITE, COLOR_CYAN);
 	init_pair(TITLE, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(SNAKE, COLOR_BLACK, COLOR_BLUE);
@@ -148,6 +149,17 @@ void Display::Print_Poison(Point pos)
 	util.CursorUtil_Set(curPos.x, curPos.y);
 }
 
+void Display::Print_Item(Point pos)
+{
+	Util util;
+	Point curPos = util.CursorUtil_Get();
+
+ 	util.SetColorText(ITEM);
+	mvprintw(pos.y, pos.x, "  ");
+
+	util.CursorUtil_Set(curPos.x, curPos.y);
+}
+
 void Display::Print_Portal(std::vector<Point> pos)
 {
 	Util util;
@@ -208,7 +220,11 @@ void Display::Print_Score(Snake snake)
 	poison << "-: " << snake.GetPoison();
 	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 6, poison.str().c_str());
 	std::stringstream gate;
-	gate << "B: " << snake.GetGate();
+	gate << "G: " << snake.GetGate();
 	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 7, gate.str().c_str());
+	std::stringstream speed;
+	speed << "Speed: " << snake.GetSpeed();
+	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 8, speed.str().c_str());
+
 	util.CursorUtil_Set(curPos.x, curPos.y);
 }

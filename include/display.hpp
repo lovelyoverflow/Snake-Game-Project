@@ -29,7 +29,8 @@ public:
 	void Print_Food(Point pos);
 	void Erase_Food(Point pos);
 	
-	void Print_Poison(Point pos);							
+	void Print_Poison(Point pos);	
+	void Print_Item(Point pos);						
 	void Print_Snake(Snake snake);	
 	void Print_Portal(std::vector<Point> pos);
 

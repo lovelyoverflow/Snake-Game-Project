@@ -16,6 +16,7 @@ private:
 	std::list<Point> body;
 	Point starPos;	
 	Point poisonPos;
+	Point itemPos;
 	std::vector<Point> portalPos;		
 
 	int direction;					
@@ -23,7 +24,8 @@ private:
 	int score;		
 	int growth;
 	int poison;
-	int gate;				
+	int gate;	
+	int speed;			
 private:
 	void Move_UP();
 	void Move_Down();
@@ -43,15 +45,18 @@ public:
 	int& GetScore();
 	int& GetGrowth();
 	int& GetPoison();
+	int& GetSpeed();
 	int& GetGate();
 	void SetStarPos();
 	void SetPoisonPos();	
+	void SetItemPos();
 	void SetPortalPos();			
 
 	void SaveScore();
 
 	Point GetStarPos();	
 	Point GetPoisonPos();
+	Point GetItemPos();
 	std::vector<Point> GetPortalPos();
 				
 	std::list<Point>& GetBody();	

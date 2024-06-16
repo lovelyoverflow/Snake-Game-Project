@@ -19,6 +19,7 @@ void Snake::Init()
 	growth = 0;
 	poison = 0;
 	gate = 0;
+	speed = 1;
 
 	//초기 스네이크 위치 지정
 	Point pos[3] = {
@@ -172,6 +173,11 @@ int &Snake::GetPoison()
     return poison;
 }
 
+int &Snake::GetSpeed()
+{
+    return speed;
+}
+
 int &Snake::GetGate()
 {
     return gate;
@@ -261,6 +267,29 @@ void Snake::SetPoisonPos()
 	}
 }
 
+void Snake::SetItemPos()
+{
+	Util util;
+	int x = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
+	int y = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
+	
+	itemPos.x = x;
+	itemPos.y = y;
+
+	//만약 스네이크가 있는 부분에 독 아이템을 띄우려고 하면 다시 랜덤 돌리기
+	for (auto i = body.begin(); i != body.end(); i++)
+	{
+		if (starPos == *i)
+		{
+			int x = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
+			int y = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
+
+			itemPos.x = x;
+			itemPos.y = y;
+		}
+	}
+}
+
 void Snake::SetPortalPos()
 {
 	Util util;
@@ -270,6 +299,8 @@ void Snake::SetPortalPos()
 
 	int x2 = 0;
 	int y2 = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
+
+
 
 	tmp.push_back(Point(x1, y1));
 	tmp.push_back(Point(x2, y2));
@@ -285,6 +316,11 @@ Point Snake::GetStarPos()
 Point Snake::GetPoisonPos()
 {
 	return poisonPos;
+}
+
+Point Snake::GetItemPos()
+{
+    return itemPos;
 }
 
 std::vector<Point> Snake::GetPortalPos()
