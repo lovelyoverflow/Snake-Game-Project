@@ -75,23 +75,35 @@ void SnakeManager::Game()
 
 		display.Print_Portal(snake.GetPortalPos()); // 만약 포탈 들어가면 지워지니까 계속 그림
 
-		/*
-			포탈은 immune wall 제외하고 랜덤으로
-			생성해야되는데 맵마다 따로 그리는 게 귀찮아서 그냥 왼쪽, 위 벽만 그림
-		*/
-		if(snake.head() == snake.GetPortalPos()[0]) // 위에 있는 포탈 들어갔을 때
+		if(snake.head() == snake.GetPortalPos()[0]) // 첫 번째 포탈 들어갔을 때
 		{
 			Point nextPortal = snake.GetPortalPos()[1];
 			snake.GetGate()++;
 			*snake.GetBody().begin() = nextPortal;
-			snake.Set_Direction(RIGHT_KEY_CODE);
+
+			if(nextPortal.x == 0)
+				snake.Set_Direction(RIGHT_KEY_CODE);
+			else if(nextPortal.x == (GBOARD_WIDTH + START_MAP_X / 2 + 1) * 2)
+				snake.Set_Direction(LEFT_KEY_CODE);	
+			else if(nextPortal.y == 0)
+				snake.Set_Direction(DOWN_KEY_CODE);
+			else if(nextPortal.y == GBOARD_HEIGHT + START_MAP_Y + 1)
+				snake.Set_Direction(UP_KEY_CODE);
 		}
-		else if(snake.head() == snake.GetPortalPos()[1]) // 왼쪽에 있는 포탈 들어갔을 때
+		else if(snake.head() == snake.GetPortalPos()[1]) // 두 번째 포탈 들어갔을 때
 		{
 			Point nextPortal = snake.GetPortalPos()[0];
 			snake.GetGate()++;
 			*snake.GetBody().begin() = nextPortal;
-			snake.Set_Direction(DOWN_KEY_CODE);
+
+			if(nextPortal.x == 0)
+				snake.Set_Direction(RIGHT_KEY_CODE);
+			else if(nextPortal.x == (GBOARD_WIDTH + START_MAP_X / 2 + 1) * 2)
+				snake.Set_Direction(LEFT_KEY_CODE);
+			else if(nextPortal.y == 0)
+				snake.Set_Direction(DOWN_KEY_CODE);
+			else if(nextPortal.y == GBOARD_HEIGHT + START_MAP_Y + 1)
+				snake.Set_Direction(UP_KEY_CODE);
 		}
 
 		Point before = snake.EraseTail();

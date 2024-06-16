@@ -138,10 +138,20 @@ bool Snake::Is_Portal()
 	switch (direction)
 	{
 	case KeyCode::LEFT_KEY_CODE:
-		if (headPos.y == GetPortalPos()[1].y)
+		headPos.x -= 2;
+		if (headPos == GetPortalPos()[0] || headPos == GetPortalPos()[1])
+			return true;
+	case KeyCode::RIGHT_KEY_CODE:
+		headPos.x += 2;
+		if (headPos == GetPortalPos()[0] || headPos == GetPortalPos()[1])
 			return true;
 	case KeyCode::UP_KEY_CODE:
-		if (headPos.x == GetPortalPos()[0].x)
+		headPos.y -= 1;
+		if (headPos == GetPortalPos()[0] || headPos == GetPortalPos()[1])
+			return true;
+	case KeyCode::DOWN_KEY_CODE:
+		headPos.y += 1;
+		if (headPos == GetPortalPos()[0] || headPos == GetPortalPos()[1])
 			return true;
 	}
 
@@ -293,19 +303,32 @@ void Snake::SetItemPos()
 void Snake::SetPortalPos()
 {
 	Util util;
-	std::vector<Point> tmp;
-	int x1 = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
+	std::vector<Point> headPos;
+	int x1 = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2 + 1) * 2;
 	int y1 = 0;
 
 	int x2 = 0;
-	int y2 = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
+	int y2 = util.Get_Random(2, GBOARD_HEIGHT + START_MAP_Y);
 
+	int x3 = util.Get_Random(1, GBOARD_WIDTH + START_MAP_X / 2) * 2;
+	int y3 = GBOARD_HEIGHT + START_MAP_Y + 1;
 
+	int x4 = (GBOARD_WIDTH + START_MAP_X / 2 + 1) * 2;
+	int y4 = util.Get_Random(1, GBOARD_HEIGHT + START_MAP_Y);
 
-	tmp.push_back(Point(x1, y1));
-	tmp.push_back(Point(x2, y2));
+	headPos.push_back(Point(x1, y1));
+	headPos.push_back(Point(x2, y2));
+	headPos.push_back(Point(x3, y3));
+	headPos.push_back(Point(x4, y4));
 
-	portalPos = tmp;
+	int firstPortal = util.Get_Random(0, 10000) % 4;
+	int secondPortal = util.Get_Random(0, 10000) % 4;
+
+	while(firstPortal == secondPortal)
+		secondPortal = util.Get_Random(0, 10000) % 4;
+
+	portalPos.push_back(headPos[firstPortal]);
+	portalPos.push_back(headPos[secondPortal]);
 }
 
 Point Snake::GetStarPos()
