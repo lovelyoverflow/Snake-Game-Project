@@ -26,6 +26,7 @@ private:
 	int poison;
 	int gate;	
 	int speed;			
+	int stage_level;
 private:
 	void Move_UP();
 	void Move_Down();
@@ -47,6 +48,7 @@ public:
 	int& GetPoison();
 	int& GetSpeed();
 	int& GetGate();
+	int& GetStageLevel();
 	void SetStarPos();
 	void SetPoisonPos();	
 	void SetItemPos();

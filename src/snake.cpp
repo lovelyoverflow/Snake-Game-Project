@@ -193,6 +193,11 @@ int &Snake::GetGate()
     return gate;
 }
 
+int &Snake::GetStageLevel()
+{
+    return stage_level;
+}
+
 Point Snake::head()
 {
 	return body.front();

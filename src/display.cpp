@@ -225,6 +225,13 @@ void Display::Print_Score(Snake snake)
 	std::stringstream speed;
 	speed << "Speed: " << snake.GetSpeed();
 	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 8, speed.str().c_str());
+	std::stringstream stage;
+	stage << "Stage " << snake.GetStageLevel();
+	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 9, stage.str().c_str());
+
+	std::stringstream mission;
+	mission << "Mission " << snake.GetGrowth() << " / " << snake.GetStageLevel() * 5;
+	util.CursorUtil_Print(START_MAP_X + 110, START_MAP_Y + 14, mission.str().c_str());
 
 	util.CursorUtil_Set(curPos.x, curPos.y);
 }

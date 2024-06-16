@@ -15,7 +15,6 @@ private:
 	std::chrono::time_point<std::chrono::high_resolution_clock> item_time;
 	bool item_flag;
 	bool is_over;
-	int stage_level;
 private:
 	void Print_Tail(Point nextTail);	// nextTail좌표에 꼬리 그리기
 public:

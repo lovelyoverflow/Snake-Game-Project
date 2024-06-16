@@ -16,8 +16,8 @@ SnakeManager::SnakeManager()
 void SnakeManager::Init()
 {
 	snake.Init();
-	stage_level = 1;
-	display.Load_Wall(stage_level);
+	snake.GetStageLevel() = 1;
+	display.Load_Wall(snake.GetStageLevel());
 	util.CursorUtil_Hide();
 	start = std::chrono::high_resolution_clock::now();
 	item_flag = true;
@@ -144,9 +144,9 @@ void SnakeManager::Game()
 			snake.GetGrowth()++;
 			if (snake.GetGrowth() % 5 == 0)
 			{
-				if(stage_level < 4)
-					stage_level++;
-				display.Load_Wall(stage_level);
+				if(snake.GetStageLevel() < 4)
+					snake.GetStageLevel()++;
+				display.Load_Wall(snake.GetStageLevel());
 				snake.SetPortalPos();
 				display.Print_Portal(snake.GetPortalPos());
 				display.Print_Wall();
