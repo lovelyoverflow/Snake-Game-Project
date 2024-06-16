@@ -147,9 +147,14 @@ void SnakeManager::Game()
 				if(snake.GetStageLevel() < 4)
 					snake.GetStageLevel()++;
 				display.Load_Wall(snake.GetStageLevel());
+				clear();
 				snake.SetPortalPos();
 				display.Print_Portal(snake.GetPortalPos());
 				display.Print_Wall();
+				display.Print_Food(snake.GetStarPos());
+				display.Print_Poison(snake.GetPoisonPos());
+				display.Print_Item(snake.GetItemPos());
+				display.Print_Score(snake);
 				refresh();
 			}
 
